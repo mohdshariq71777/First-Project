@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { ProductServiceService } from '../services/product-service.service';
+import { ProductServiceService } from '../services/product-service/product-service.service';
+import { WorkingService } from '../services/working-service/working.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,7 +9,7 @@ import { ProductServiceService } from '../services/product-service.service';
 })
 export class HomepageComponent implements OnInit, AfterViewChecked {
 
-  constructor(private prdSrvc: ProductServiceService) { }
+  constructor(private prdSrvc: ProductServiceService, private wrSrvc: WorkingService) { }
   latest: any = [];
   allproducts: any;
   lSize: any;
@@ -52,6 +53,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
   }
   detailsPage(pro) {
     this.prdSrvc.detailsPage(pro)
+    this.wrSrvc.scrollTop()
   }
   filterSize(pro, size) {
     this.prdSrvc.filterSize(pro, size)
@@ -101,10 +103,10 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
 
   //For Local Storage
   setLocalStorage(data) {
-    this.prdSrvc.setLocalStorage(data)
+    this.prdSrvc.setLocalStorageCart(data)
   }
   getLocalStorage() {
-    this.localdata = this.prdSrvc.getLocalStorage()
+    this.localdata = this.prdSrvc.getLocalStorageCart()
   }
   ngAfterViewChecked(): void {
 

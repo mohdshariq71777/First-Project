@@ -7,10 +7,11 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { ProductServiceService } from './services/product-service.service';
+import { ProductServiceService } from './services/product-service/product-service.service';
 import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HttpClientModule } from '@angular/common/http'
+import { WorkingService } from './services/working-service/working.service';
 const approutes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'about-us', component: AboutUsComponent },
@@ -34,7 +35,7 @@ const approutes: Routes = [
     HttpClientModule
 
   ],
-  providers: [ProductServiceService],
+  providers: [ProductServiceService, WorkingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

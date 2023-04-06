@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductServiceService } from '../services/product-service.service';
+import { ProductServiceService } from '../services/product-service/product-service.service';
 
 @Component({
   selector: 'app-shop',
@@ -192,9 +192,9 @@ export class ShopComponent implements OnInit {
 
   //For Local Storage
   setLocalStorage(data) {
-    this.prdSrvc.setLocalStorage(data)
+    this.prdSrvc.setLocalStorageCart(data)
   }
   getLocalStorage() {
-    this.localdata = this.prdSrvc.getLocalStorage()
+    this.localdata = this.prdSrvc.getLocalStorageCart()
   }
 }

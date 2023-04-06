@@ -54,10 +54,10 @@ export class ProductServiceService {
     if (localStorage.getItem('detPro')) localStorage.removeItem('detPro')
     localStorage.setItem('detPro', JSON.stringify(pro))
   }
-  setLocalStorage(data) {
+  setLocalStorageCart(data) {
     localStorage.setItem('cart', JSON.stringify(data))
   }
-  getLocalStorage() {
+  getLocalStorageCart() {
     return JSON.parse(localStorage.getItem('cart'))
   }
   products2(): Observable<any> {

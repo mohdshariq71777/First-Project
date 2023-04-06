@@ -96,7 +96,9 @@
           <i class="fas fa-star font9 me-1 text-secondary"></i>
         </div>
         <div class="col-9">
-          <p class="star-review text-secondary">(2 customer reviews)</p>
+          <p class="star-review text-secondary">
+            ({{ reviews.length }} customer reviews)
+          </p>
         </div>
       </div>
       <div class="row second-row">
@@ -104,85 +106,17 @@
           <h3 class="price fw-bold">₹ {{ pro.price }}</h3>
         </div>
       </div>
-      <div class="row third-row">
-        <div class="col-12">
-          <h6 class="size fw-bold text-secondary">SIZE</h6>
-        </div>
-      </div>
-      <div class="row gx-5">
-        <div class="col-auto">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="sizes"
-              id="clSize"
-              value="option2"
-            />
-            <label class="form-check-label" for="clSize"> XL </label>
-          </div>
-        </div>
 
-        <div class="col-auto">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="sizes"
-              id="lSize"
-              value="option2"
-            />
-            <label class="form-check-label" for="lSize"> L</label>
-          </div>
-        </div>
-        <div class="col-auto">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="sizes"
-              id="mSize"
-              value="option2"
-            />
-            <label class="form-check-label" for="mSize"> M </label>
-          </div>
-        </div>
-      </div>
-
-      <div class="row sixth-row mt-2">
-        <div class="col-12">
-          <h3 class="org-price fw-bold">18.00</h3>
-        </div>
-      </div>
-      <div class="row seventh-row">
-        <div class="col-2">
-          <input
-            type="number"
-            id=""
-            class="form-control"
-            step="1"
-            min="1"
-            max=""
-            name="quantity"
-            value="1"
-            data-old="1"
-            title="Qty"
-            size="4"
-            placeholder=""
-            inputmode="numeric"
-          />
-        </div>
-        <div class="col-5">
-          <button type="button" class="btn btn-danger rounded-0 w-100 ms-2">
-            Add to Cart
-          </button>
-        </div>
+      <div class="row">
         <div class="col-5">
           <button
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample"
             type="button"
-            class="btn btn-success rounded-0 w-100 text-light"
+            class="btn btn-danger rounded-0 w-100 ms-2"
+            (click)="addToCart(pro)"
           >
-            Buy Now
+            Add to Cart
           </button>
         </div>
       </div>
@@ -191,7 +125,7 @@
 
   <div class="row mx-0">
     <div class="col-sm-12 mb-3 text-center">
-      <h2 class="mb-0">Reviews (1)</h2>
+      <h2 class="mb-0">Reviews ({{ reviews.length }})</h2>
     </div>
     <div class="col-sm-12">
       <div class="row">
@@ -371,11 +305,14 @@
               </div>
             </div>
           </div>
-          <h6 class="mb-4">1 Review for ..</h6>
+          <h6 class="mb-3">
+            Last {{ reviews.length }}
+            {{ reviews.length == 0 ? "Review" : "Reviews" }} for this product -
+          </h6>
 
-          <div class="row gy-2">
-            <div class="col-sm-12">
-              <div class="card-shadow-none" *ngFor="let rv of reviews">
+          <div class="row gy-2 mh580">
+            <div class="col-sm-12" *ngFor="let rv of reviews">
+              <div class="card-shadow-none">
                 <ng-container *ngIf="reviews.length > 0">
                   <div class="card-body">
                     <p class="mb-2">
@@ -386,11 +323,14 @@
                       <i class="fas fa-star"></i>
                     </p>
                     <p class="mb-0">
-                      <span class="fw-bold">{{ rv.name }} - </span>
-                      <span class="font9">{{ myDate }}</span>
+                      <span class="fw-bold"
+                        ><span class="text-success">User : </span>
+                        {{ rv.name }} -
+                      </span>
+                      <span class="font9">{{ rv.date }}</span>
                     </p>
                     <p class="mb-0">
-                      <span class="font8">{{ rv.review }}</span>
+                      <span class="font8">Review - {{ rv.review }}</span>
                     </p>
                   </div>
                 </ng-container>
@@ -487,7 +427,7 @@
                 SUBMIT
               </button>
             </div>
-            <div class="Sec-container mt-5">
+            <!-- <div class="Sec-container mt-5">
               <div class="row">
                 <div class="col-12">
                   <h5 class="h5 text-secondary fw-bold">
@@ -594,7 +534,7 @@
                   <hr />
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -602,3 +542,128 @@
   </div>
 </div>
 <app-footer></app-footer>
+
+<!-- Modal clear all starts here -->
+<div
+  class="modal fade"
+  id="clearModal"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center py-4">
+        <div for="text-center">
+          <p class="mb-2">Are you sure you want to clear all products?</p>
+          <p class="mb-0">
+            <button
+              data-bs-dismiss="modal"
+              (click)="clearCart()"
+              class="btn btn-sm btn-theme1 px-3 me-2"
+            >
+              Yes
+            </button>
+            <button data-bs-dismiss="modal" class="btn btn-sm btn-theme2 px-3">
+              No
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal clear all ends here -->
+
+<!-- Offcanvas starts here -->
+<div
+  id="cartCanvas"
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header px-3 py-2">
+    <h5 class="offcanvas-title font600" id="offcanvasExampleLabel">My Cart</h5>
+    <button
+      type="button"
+      class="btn-close btn-sm"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body" *ngIf="cartProducts.length > 0">
+    <div class="row gy-2 mb-2">
+      <div
+        class="col-sm-12"
+        *ngFor="let cartPro of cartProducts; let i = index"
+      >
+        <div class="card shadow-none">
+          <div class="card-body">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-sm-12">
+                <p class="font600 font9 mb-2">{{ cartPro.desc }}</p>
+              </div>
+              <div class="col-sm-9">
+                <div class="row align-items-center">
+                  <div class="col-sm-4">
+                    <input
+                      id="q{{ i }}"
+                      (change)="changeQuant($event, cartPro)"
+                      min="1"
+                      type="number"
+                      [(ngModel)]="cartPro.quantity"
+                      class="form-control3"
+                    />
+                  </div>
+                  <div class="col-sm-8">
+                    <p class="font9 mb-0">
+                      {{ cartPro.price }} x {{ cartPro.quantity }} = ₹{{
+                        cartPro.cartPrice
+                      }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <button
+                  class="btn btn-sm btn-theme2"
+                  (click)="removeItem(i, cartPro)"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p class="mb-0">
+        <button data-bs-dismiss="offcanvas" class="btn btn-sm btn-theme1">
+          Add more
+        </button>
+        <button
+          class="ms-2 btn btn-theme2 btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#clearModal"
+        >
+          Clear all
+        </button>
+      </p>
+      <p class="mb-0">
+        <span class="fw-bold">Total Amount : </span>
+        <span class="text-success">₹{{ totalPrice }}</span>
+      </p>
+    </div>
+  </div>
+  <div class="offcanvas-body" *ngIf="cartProducts.length == 0">
+    <label class="mb-2" for="">Your cart is empty :)</label>
+    <p>
+      <button data-bs-dismiss="offcanvas" class="btn btn-sm btn-theme1">
+        Shop now
+      </button>
+    </p>
+  </div>
+</div>
+<!-- Offcanvas ends here -->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { WorkingService } from 'src/app/services/working-service/working.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -7,15 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wrSrvc: WorkingService) { }
 
   ngOnInit(): void {
   }
   scroll() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
+    this.wrSrvc.scrollTop()
   }
 
 }
