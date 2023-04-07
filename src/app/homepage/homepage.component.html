@@ -122,10 +122,12 @@
                 <div class="card-body border-0 text-center">
                   <h6 class="card-title mb-1">{{ pro.desc }}</h6>
                   <p class="text-center mb-0">
-                    <span class="text-decoration-line-through text-secondary"
-                      >{{ pro.mrp ? "₹" : "" }}{{ pro.mrp }}</span
-                    >
-                    <span class="productPrice"> ₹{{ pro.price }} </span>
+                    <span class="text-decoration-line-through text-secondary">{{
+                      pro.mrp | currency : "INR"
+                    }}</span>
+                    <span class="productPrice">
+                      {{ pro.price | currency : "INR" }}
+                    </span>
                     <span class="text-danger font600"
                       >{{ pro.offer }}% off</span
                     >
@@ -214,9 +216,11 @@
                   <h6 class="card-title mb-1">{{ latPro.desc }}</h6>
                   <p class="text-center mb-0">
                     <span class="text-decoration-line-through text-secondary">
-                      {{ latPro.mrp ? "₹" : "" }}{{ latPro.mrp }}</span
+                      {{ latPro.mrp | currency : "INR" }}</span
                     >
-                    <span class="productPrice"> ₹{{ latPro.price }} </span>
+                    <span class="productPrice">
+                      {{ latPro.price | currency : "INR" }}
+                    </span>
                     <span class="text-danger font600"
                       >{{ latPro.offer }}% off</span
                     >
@@ -371,9 +375,9 @@
                   </div>
                   <div class="col-sm-8">
                     <p class="font9 mb-0">
-                      {{ cartPro.price }} x {{ cartPro.quantity }} = ₹{{
-                        cartPro.cartPrice
-                      }}
+                      {{ cartPro.price | currency : "INR" }} x
+                      {{ cartPro.quantity }} =
+                      {{ cartPro.cartPrice | currency : "INR" }}
                     </p>
                   </div>
                 </div>
@@ -406,7 +410,7 @@
       </p>
       <p class="mb-0">
         <span class="fw-bold">Total Amount : </span>
-        <span class="text-success">₹{{ totalPrice }}</span>
+        <span class="text-success">{{ totalPrice | currency : "INR" }}</span>
       </p>
     </div>
   </div>

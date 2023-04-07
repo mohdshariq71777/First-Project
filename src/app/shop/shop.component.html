@@ -265,10 +265,12 @@
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ pro.desc }}</h6>
           <p class="text-center mb-0">
-            <span class="text-decoration-line-through text-secondary"
-              >{{ pro.showMrp ? "MRP ₹" : "" }}{{ pro.showMrp }}</span
+            <span class="text-decoration-line-through text-secondary">{{
+              pro.showMrp | currency : "INR"
+            }}</span>
+            <span class="productPrice">
+              {{ pro.showPrice | currency : "INR" }}</span
             >
-            <span class="productPrice"> ₹{{ pro.showPrice }}</span>
           </p>
 
           <p class="mb-1">
@@ -293,7 +295,7 @@
                 aria-controls="home"
                 aria-selected="true"
               >
-                11-5
+                XL
               </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -308,7 +310,7 @@
                 aria-controls="profile"
                 aria-selected="false"
               >
-                7-10
+                L
               </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -323,7 +325,7 @@
                 aria-controls="contact"
                 aria-selected="false"
               >
-                3-6
+                M
               </button>
             </li>
           </ul>
@@ -353,16 +355,17 @@
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ topPro.desc }}</h6>
           <p class="text-center mb-0">
-            <span class="text-decoration-line-through text-secondary"
-              >{{ topPro.showTopMrp ? "MRP ₹" : ""
-              }}{{ topPro.showTopMrp }}</span
+            <span class="text-decoration-line-through text-secondary">{{
+              topPro.showTopMrp | currency : "INR"
+            }}</span>
+            <span class="productPrice">
+              {{ topPro.showTopPrice | currency : "INR" }}</span
             >
-            <span class="productPrice"> ₹{{ topPro.showTopPrice }}</span>
           </p>
           <p class="mb-1">
             <span class="fw-bold font9">Available Sizes :</span>
             <span class=""> {{ topPro.TitleSizes }}</span>
-            <span class="text-danger font600">{{ topPro.topOffer }}% off</span>
+            <span class="text-danger font600"> {{ topPro.topOffer }}% off</span>
           </p>
           <ul
             class="nav nav-tabs mb-0 border-0 sizes justify-content-center"
@@ -381,7 +384,7 @@
                 aria-controls="home"
                 aria-selected="true"
               >
-                11-5
+                XL
               </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -396,7 +399,7 @@
                 aria-controls="profile"
                 aria-selected="false"
               >
-                7-10
+                L
               </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -411,7 +414,7 @@
                 aria-controls="contact"
                 aria-selected="false"
               >
-                3-6
+                M
               </button>
             </li>
           </ul>
@@ -442,11 +445,12 @@
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ popPro.desc }}</h6>
           <p class="text-center mb-0">
-            <span class="text-decoration-line-through text-secondary"
-              >{{ popPro.showPopMrp ? "MRP ₹" : ""
-              }}{{ popPro.showPopMrp }}</span
+            <span class="text-decoration-line-through text-secondary">{{
+              popPro.showPopMrp | currency : "INR"
+            }}</span>
+            <span class="productPrice">
+              {{ popPro.showPopPrice | currency : "INR" }}</span
             >
-            <span class="productPrice"> ₹{{ popPro.showPopPrice }}</span>
           </p>
           <p class="mb-1">
             <span class="fw-bold font9">Available Sizes :</span>
@@ -470,7 +474,7 @@
                 aria-controls="home"
                 aria-selected="true"
               >
-                11-5
+                XL
               </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -485,7 +489,7 @@
                 aria-controls="profile"
                 aria-selected="false"
               >
-                7-10
+                L
               </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -500,7 +504,7 @@
                 aria-controls="contact"
                 aria-selected="false"
               >
-                3-6
+                M
               </button>
             </li>
           </ul>
@@ -596,9 +600,9 @@
                   </div>
                   <div class="col-sm-8">
                     <p class="font9 mb-0">
-                      {{ cartPro.price }} x {{ cartPro.quantity }} = ₹{{
-                        cartPro.cartPrice
-                      }}
+                      {{ cartPro.price | currency : "INR" }} x
+                      {{ cartPro.quantity }} =
+                      {{ cartPro.cartPrice | currency : "INR" }}
                     </p>
                   </div>
                 </div>
@@ -631,7 +635,7 @@
       </p>
       <p class="mb-0">
         <span class="fw-bold">Total Amount : </span>
-        <span class="text-success">₹{{ totalPrice }}</span>
+        <span class="text-success">{{ totalPrice | currency : "INR" }}</span>
       </p>
     </div>
   </div>

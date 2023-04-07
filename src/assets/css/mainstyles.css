@@ -47,7 +47,7 @@
 
 .btn-theme1 {
   background: linear-gradient(45deg, #f91d50, #c12559);
-  color: #fff;
+  color: #fff !important;
 }
 
 .btn-theme1:hover {
@@ -56,7 +56,7 @@
 
 .btn-theme2 {
   background: linear-gradient(95deg, #ee7436, #e39b42);
-  color: #fff;
+  color: #fff !important;
 }
 
 .btn-theme2:hover {

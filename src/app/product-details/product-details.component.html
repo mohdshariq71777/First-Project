@@ -103,7 +103,7 @@
       </div>
       <div class="row second-row">
         <div class="col-12">
-          <h3 class="price fw-bold">₹ {{ pro.price }}</h3>
+          <h3 class="price fw-bold">{{ pro.price | currency : "INR" }}</h3>
         </div>
       </div>
 
@@ -618,9 +618,9 @@
                   </div>
                   <div class="col-sm-8">
                     <p class="font9 mb-0">
-                      {{ cartPro.price }} x {{ cartPro.quantity }} = ₹{{
-                        cartPro.cartPrice
-                      }}
+                      {{ cartPro.price | currency : "INR" }} x
+                      {{ cartPro.quantity }} =
+                      {{ cartPro.cartPrice | currency : "INR" }}
                     </p>
                   </div>
                 </div>
@@ -653,7 +653,7 @@
       </p>
       <p class="mb-0">
         <span class="fw-bold">Total Amount : </span>
-        <span class="text-success">₹{{ totalPrice }}</span>
+        <span class="text-success">{{ totalPrice | currency : "INR" }}</span>
       </p>
     </div>
   </div>

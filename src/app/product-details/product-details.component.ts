@@ -42,7 +42,7 @@ export class ProductDetailsComponent implements OnInit {
     else {
       pro.quantity++;
     }
-    pro.cartPrice = Number(pro.price * pro.quantity).toFixed(2);
+    pro.cartPrice = pro.price * pro.quantity;
     this.totalPrice = this.cartProducts.reduce((a, pro) => Number(pro.cartPrice + a).toFixed(2), 0);
     this.totalPrice = this.cartProducts.reduce((a, prod) => (Number(prod.cartPrice + a).toFixed(2)), 0)
     const allPrices = [];
@@ -55,9 +55,9 @@ export class ProductDetailsComponent implements OnInit {
     this.getLocalStorage();
     this.localdata.splice(ind, 1)
     this.setLocalStorage(this.localdata)
-    this.totalPrice = (this.totalPrice - pro.cartPrice).toFixed(2);
+    this.totalPrice = this.totalPrice - pro.cartPrice;
     pro.quantity = 1;
-    pro.cartPrice = (pro.price * pro.quantity).toFixed(2);
+    pro.cartPrice = pro.price * pro.quantity;
   }
   clearCart() {
     this.totalPrice = 0;

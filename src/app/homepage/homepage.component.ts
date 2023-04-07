@@ -31,16 +31,16 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
     this.allproducts.forEach(pro => pro.TitleSizes = pro.sizes.map(size => size.toUpperCase()))
     this.allproducts.forEach(pro => {
       if (pro.price <= 5000) {
-        pro.mrp = (pro.price * 1.5).toFixed(2)
+        pro.mrp = pro.price * 1.5
       }
       if (pro.price > 5000) {
-        pro.mrp = (pro.price * 1.4).toFixed(2)
+        pro.mrp = pro.price * 1.4
       }
       if (pro.price > 8000) {
-        pro.mrp = (pro.price * 1.3).toFixed(2)
+        pro.mrp = pro.price * 1.3
       }
       if (pro.price > 12000) {
-        pro.mrp = (pro.price * 1.2).toFixed(2)
+        pro.mrp = pro.price * 1.2
       }
     })
     this.allproducts.forEach(pro => pro.quantity = 1);
@@ -49,7 +49,6 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
     this.allproducts.forEach(pro => pro.curSize = this.proSize)
     this.getLocalStorage()
     this.cartProducts = this.localdata ? this.localdata : this.cartProducts;
-    this.prdSrvc.products2().subscribe(data => console.log(data))
   }
   detailsPage(pro) {
     this.prdSrvc.detailsPage(pro)
@@ -71,13 +70,13 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
     else {
       pro.quantity++;
     }
-    pro.cartPrice = Number(pro.price * pro.quantity).toFixed(2);
-    this.totalPrice = this.cartProducts.reduce((a, pro) => Number(pro.cartPrice + a).toFixed(2), 0);
-    this.totalPrice = this.cartProducts.reduce((a, prod) => (Number(prod.cartPrice + a).toFixed(2)), 0)
+    pro.cartPrice = pro.price * pro.quantity;
+    this.totalPrice = this.cartProducts.reduce((a, pro) => pro.cartPrice + a, 0);
+    this.totalPrice = this.cartProducts.reduce((a, prod) => prod.cartPrice + a, 0)
     const allPrices = [];
     this.setLocalStorage(this.cartProducts)
     this.cartProducts.forEach(prod => allPrices.push(Number.parseFloat(prod.cartPrice)))
-    this.totalPrice = (allPrices.reduce((a, pr) => (a + pr), 0)).toFixed(2);
+    this.totalPrice = allPrices.reduce((a, pr) => (a + pr), 0);
   };
   removeItem(ind, pro) {
     this.cartProducts.splice(ind, 1)
