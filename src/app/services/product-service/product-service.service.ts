@@ -32,15 +32,15 @@ export class ProductServiceService {
     this.proSize = size;
     if (this.proSize === "xl") {
       pro.price = pro.xlSize;
-      pro.offer = (100 - (pro.xlSize / pro.mrp * 100)).toFixed(2)
+      // pro.offer = (100 - (pro.xlSize / pro.mrp * 100)).toFixed(2)
     }
     if (this.proSize === "l") {
       pro.price = pro.lSize;
-      pro.offer = (100 - (pro.lSize / pro.mrp * 100)).toFixed(2)
+      // pro.offer = (100 - (pro.lSize / pro.mrp * 100)).toFixed(2)
     }
     if (this.proSize === "m") {
       pro.price = pro.mSize;
-      pro.offer = (100 - (pro.mSize / pro.mrp * 100)).toFixed(2)
+      // pro.offer = (100 - (pro.mSize / pro.mrp * 100)).toFixed(2)
     }
     if (pro.price <= 5000) {
       pro.mrp = pro.price * 1.5
@@ -54,6 +54,8 @@ export class ProductServiceService {
     if (pro.price > 12000) {
       pro.mrp = pro.price * 1.2
     }
+    pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(2)
+    // pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(2)
   }
   detailsPage(pro) {
     if (localStorage.getItem('detPro')) localStorage.removeItem('detPro')

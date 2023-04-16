@@ -19,7 +19,23 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.prod = [];
+    this.proSize = "xl";
     this.prod = [JSON.parse(localStorage.getItem('detPro'))]
+    this.prod.forEach(pro => pro.price = pro.xlSize)
+    this.prod.forEach(pro => {
+      if (pro.price <= 5000) {
+        pro.mrp = (pro.price * 1.5).toFixed(2)
+      }
+      if (pro.price > 5000) {
+        pro.mrp = (pro.price * 1.4).toFixed(2)
+      }
+      if (pro.price > 8000) {
+        pro.mrp = (pro.price * 1.3).toFixed(2)
+      }
+      if (pro.price > 12000) {
+        pro.mrp = (pro.price * 1.2).toFixed(2)
+      }
+    })
     console.log(this.prod)
     // this.prod.forEach(pro => pro.price = (pro.price).toFixed(2));
     this.cartProducts = [];
@@ -33,7 +49,6 @@ export class ProductDetailsComponent implements OnInit {
 
     // this.reviews = JSON.parse(localStorage.getItem('srPrd'))
     // this.prod.forEach(pro => this.reviews = pro.reviews ? pro.reviews : [])
-    this.proSize = "xl";
     this.prod.forEach(pro => pro.curSize = this.proSize)
   }
   submit_review(prodt, r, n) {
