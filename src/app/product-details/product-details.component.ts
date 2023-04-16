@@ -14,25 +14,60 @@ export class ProductDetailsComponent implements OnInit {
   localdata: any;
   localReview: any;
   options: any;
+  proSize: any;
   constructor(private prdSrvc: ProductServiceService) { }
 
   ngOnInit(): void {
+    // this.prod = [];
     this.prod = [JSON.parse(localStorage.getItem('detPro'))]
-    this.prod.forEach(pro => pro.price = (pro.price).toFixed(2));
+    console.log(this.prod)
+    // this.prod.forEach(pro => pro.price = (pro.price).toFixed(2));
     this.cartProducts = [];
     this.localdata = [];
-    this.reviews = [];
+    // this.reviews = [];
     this.getLocalStorage();
-    this.getLocalStorageRev();
+    // this.getLocalStorageRev();
     this.cartProducts = this.localdata ? this.localdata : this.cartProducts;
-    this.reviews = this.localReview ? this.localReview : this.reviews;
+    // this.prod.forEach(pro => pro.reviews = this.localReview ? this.localReview : [])
+    // this.reviews = this.prod.reviews;
+
+    // this.reviews = JSON.parse(localStorage.getItem('srPrd'))
+    // this.prod.forEach(pro => this.reviews = pro.reviews ? pro.reviews : [])
+    this.proSize = "xl";
+    this.prod.forEach(pro => pro.curSize = this.proSize)
   }
-  submit_review(r, n) {
+  submit_review(prodt, r, n) {
     this.myDate = new Intl.DateTimeFormat('en-US', this.options).format(new Date);
-    this.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-    this.options = { year: 'numeric', month: 'long', day: 'numeric' };
-    if (this.reviews.length > 4) this.reviews.shift();
-    this.setLocalStorageRev(this.reviews)
+    // pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
+    this.prdSrvc.products.forEach(pro => {
+      if (prodt.article !== pro.article) return
+      pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
+      if (pro.reviews.length > 4) pro.reviews.shift();
+      this.reviews = pro.reviews;
+      // console.log(pro)
+    })
+    console.log(this.prdSrvc.products)
+    localStorage.setItem('srPrd', JSON.stringify(this.prdSrvc.products))
+    // this.prdSrvc.products.forEach(pro => {
+    //   if ( this.prod.map(pro => pro.article)= pro.article) {
+    //     console.log(pro)
+    //     console.log('prodt = ', prodt)
+    //     pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
+    //   }
+    //   if (pro.reviews.length > 4) pro.reviews.shift();
+    //   this.reviews = pro.reviews;
+    //   // console.log(this.prdSrvc.products)
+    // })
+    // this.options = { year: 'numeric', month: 'long', day: 'numeric' };
+    // // if (pro.reviews.length > 4) pro.reviews.shift();
+    // // this.reviews = pro.reviews;
+    // console.log(prodt)
+
+    // localStorage.setItem('detPro', JSON.stringify(pro))
+    // console.log(pro.reviews)
+    // // this.setLocalStorageRev(pro.reviews)
+    // // this.getLocalStorageRev();
+    // this.reviews = this.localReview ? this.localReview : this.reviews;
   }
   //For Cart
   addToCart(pro) {
@@ -57,7 +92,7 @@ export class ProductDetailsComponent implements OnInit {
     this.setLocalStorage(this.localdata)
     this.totalPrice = this.totalPrice - pro.cartPrice;
     pro.quantity = 1;
-    pro.cartPrice = pro.price * pro.quantity;
+    pro.cartPrice = (pro.price * pro.quantity).toFixed(2);
   }
   clearCart() {
     this.totalPrice = 0;
@@ -84,5 +119,11 @@ export class ProductDetailsComponent implements OnInit {
   }
   getLocalStorageRev() {
     this.localReview = JSON.parse(localStorage.getItem('reviews'))
+  }
+
+  //Filter by Size
+  filterSize(pro, size) {
+    this.prdSrvc.filterSize(pro, size)
+    this.proSize = this.prdSrvc.proSize;
   }
 }

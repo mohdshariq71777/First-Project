@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductServiceService } from '../services/product-service/product-service.service';
+import { WorkingService } from '../services/working-service/working.service';
 
 @Component({
   selector: 'app-shop',
@@ -14,13 +15,14 @@ export class ShopComponent implements OnInit {
   localdata: any;
   cartProducts: any;
   totalPrice: any;
-  constructor(private prdSrvc: ProductServiceService) { }
+  constructor(private prdSrvc: ProductServiceService, private wrSrvc: WorkingService) { }
 
   ngOnInit(): void {
-    this.cartProducts = [];
+    // this.cartProducts = [];
     this.localdata = [];
     //For All Products
     this.allProducts = this.prdSrvc.products;
+    // this.allProducts = this.prdSrvc.getProductsJSON().subscribe(res => this.allProducts = res);
     this.allProducts.forEach(pro => pro.xlSize = pro.price)
     this.allProducts.forEach(pro => pro.lSize = pro.price - 10)
     this.allProducts.forEach(pro => pro.mSize = pro.price - 20)
@@ -44,17 +46,17 @@ export class ShopComponent implements OnInit {
     this.uncat = this.allProducts
     this.uncat.forEach(pro => pro.showPrice = pro.price)
     this.uncat.forEach(pro => {
-      if (pro.price <= 5000) {
-        pro.mrp = (pro.price * 1.5).toFixed(2)
+      if (pro.showPrice <= 5000) {
+        pro.mrp = (pro.showPrice * 1.5).toFixed(2)
       }
-      if (pro.price > 5000) {
-        pro.mrp = (pro.price * 1.4).toFixed(2)
+      if (pro.showPrice > 5000) {
+        pro.mrp = (pro.showPrice * 1.4).toFixed(2)
       }
-      if (pro.price > 8000) {
-        pro.mrp = (pro.price * 1.3).toFixed(2)
+      if (pro.showPrice > 8000) {
+        pro.mrp = (pro.showPrice * 1.3).toFixed(2)
       }
-      if (pro.price > 12000) {
-        pro.mrp = (pro.price * 1.2).toFixed(2)
+      if (pro.showPrice > 12000) {
+        pro.mrp = (pro.showPrice * 1.2).toFixed(2)
       }
     })
     this.uncat.forEach(pro => pro.showMrp = pro.mrp)
@@ -64,7 +66,7 @@ export class ShopComponent implements OnInit {
     // this.uncat.forEach(pro => pro.sizes.forEach(size => console.log(size.toUpperCase())))
 
     // **Filter Popular Product**
-    this.popularProducts = this.allProducts.filter(pro => pro.article > 106);
+    this.popularProducts = this.allProducts.filter(pro => pro.article < 108);
     this.popularProducts.forEach(pro => pro.showPopPrice = pro.price)
     this.popularProducts.forEach(pro => pro.showPopMrp = pro.mrp)
     this.popularProducts.forEach(pro => pro.offer = (100 - (pro.showPopPrice / pro.showPopMrp * 100)).toFixed(2))
@@ -72,12 +74,13 @@ export class ShopComponent implements OnInit {
 
 
     // **Filter Top Product**
-    this.topProducts = this.allProducts.filter(pro => pro.price > 6000);
+    this.topProducts = this.allProducts.filter(pro => pro.price < 3000 && pro.price >= 1500);
     this.topProducts.forEach(pro => pro.showTopPrice = pro.price)
     this.topProducts.forEach(pro => pro.showTopMrp = pro.mrp)
     this.topProducts.forEach(pro => pro.offer = (100 - (pro.showTopPrice / pro.showTopMrp * 100)).toFixed(2))
     this.topProducts.forEach(pro => pro.topOffer = pro.offer)
-    this.cartProducts = this.localdata ? this.localdata : this.cartProducts;
+    this.getLocalStorage()
+    this.cartProducts = this.localdata ? this.localdata : [];
   }
 
   // **Filter by Size**
@@ -96,7 +99,19 @@ export class ShopComponent implements OnInit {
       pro.showPrice = pro.mSize;
       pro.uncatOffer = (100 - (pro.showPrice / pro.showMrp * 100)).toFixed(2)
     }
-    pro.showMrp = pro.showPrice * 1.5;
+    if (pro.showPrice <= 5000) {
+      pro.mrp = (pro.showPrice * 1.5).toFixed(2)
+    }
+    if (pro.showPrice > 5000) {
+      pro.mrp = (pro.showPrice * 1.4).toFixed(2)
+    }
+    if (pro.showPrice > 8000) {
+      pro.mrp = (pro.showPrice * 1.3).toFixed(2)
+    }
+    if (pro.showPrice > 12000) {
+      pro.mrp = (pro.showPrice * 1.2).toFixed(2)
+    }
+    pro.showMrp = pro.mrp;
   }
 
   //For Top Products
@@ -113,7 +128,20 @@ export class ShopComponent implements OnInit {
       top.showTopPrice = top.mSize;
       top.topOffer = (100 - (top.showTopPrice / top.showMrp * 100)).toFixed(2)
     }
-    top.showTopMrp = top.showTopPrice * 1.5;
+    // Top Products MRP
+    if (top.showTopPrice <= 5000) {
+      top.mrp = (top.showTopPrice * 1.5).toFixed(2)
+    }
+    if (top.showTopPrice > 5000) {
+      top.mrp = (top.showTopPrice * 1.4).toFixed(2)
+    }
+    if (top.showTopPrice > 8000) {
+      top.mrp = (top.showTopPrice * 1.3).toFixed(2)
+    }
+    if (top.showTopPrice > 12000) {
+      top.mrp = (top.showTopPrice * 1.2).toFixed(2)
+    }
+    top.showTopMrp = top.mrp;
   }
 
   //For Popular Products
@@ -130,7 +158,20 @@ export class ShopComponent implements OnInit {
       pop.showPopPrice = pop.mSize;
       pop.popOffer = (100 - (pop.showPopPrice / pop.showMrp * 100)).toFixed(2)
     }
-    pop.showPopMrp = pop.showPopPrice * 1.5;
+    // Popular Products MRP
+    if (pop.showPopPrice <= 5000) {
+      pop.mrp = (pop.showPopPrice * 1.5).toFixed(2)
+    }
+    if (pop.showPopPrice > 5000) {
+      pop.mrp = (pop.showPopPrice * 1.4).toFixed(2)
+    }
+    if (pop.showPopPrice > 8000) {
+      pop.mrp = (pop.showPopPrice * 1.3).toFixed(2)
+    }
+    if (pop.showPopPrice > 12000) {
+      pop.mrp = (pop.showPopPrice * 1.2).toFixed(2)
+    }
+    pop.showPopMrp = pop.mrp;
   }
 
   // **Filter by Price**
@@ -196,5 +237,11 @@ export class ShopComponent implements OnInit {
   }
   getLocalStorage() {
     this.localdata = this.prdSrvc.getLocalStorageCart()
+  }
+
+  //Details Page
+  detailsPage(pro) {
+    this.prdSrvc.detailsPage(pro)
+    this.wrSrvc.scrollTop()
   }
 }

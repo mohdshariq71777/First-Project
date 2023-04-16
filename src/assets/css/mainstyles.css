@@ -62,3 +62,19 @@
 .btn-theme2:hover {
   background-position-x: 100%;
 }
+
+.sizes .nav-link.active {
+  border: 2px solid #646464 !important;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.sizes .nav-link {
+  color: #646464;
+  margin-inline: 5px;
+  border-radius: 2px;
+  width: 38px;
+  padding: 5px 0px;
+  height: auto;
+  font-size: 0.6rem;
+}

@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container-fluid p-5">
-  <div class="row mx-0 mb-4" *ngFor="let pro of prod">
+  <div class="row mx-0 mb-4" *ngFor="let pro of prod; let i = index">
     <!-- <div class="col-1">
       <img class="smaller mb-3" src="../../assets/images/5.jpg" alt="" />
       <img class="smaller" src="../../assets/images/7.jpg" alt="" />
@@ -97,15 +97,81 @@
         </div>
         <div class="col-9">
           <p class="star-review text-secondary">
-            ({{ reviews.length }} customer reviews)
+            ({{ reviews.length }} customer
+            {{ reviews.length > 0 ? "reviews" : "review" }})
           </p>
         </div>
       </div>
       <div class="row second-row">
         <div class="col-12">
-          <h3 class="price fw-bold">{{ pro.price | currency : "INR" }}</h3>
+          <p class="mb-0">
+            <span class="text-decoration-line-through text-secondary fs-5">{{
+              pro.mrp | currency : "INR"
+            }}</span>
+            <span class="productPrice fs-3 font600">
+              {{ pro.price | currency : "INR" }}
+            </span>
+            <span class="text-danger font600 fs-4 font600"
+              >{{ pro.offer }}% off</span
+            >
+          </p>
+          <!-- <h3 class="price fw-bold">{{ pro.price | currency : "INR" }}</h3> -->
         </div>
       </div>
+
+      <!-- <h6 class="card-title mb-1">{{ pro.desc }}</h6> -->
+
+      <p class="mb-1">
+        <span class="fw-bold font9">Available Sizes :</span>
+        <span class=""> {{ pro.TitleSizes }}</span>
+      </p>
+      <ul class="nav nav-tabs border-0 sizes my-2" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link navLinkAll border-0 active"
+            id="{{ 'xl' + i }}"
+            (click)="filterSize(pro, 'xl')"
+            data-bs-toggle="tab"
+            data-bs-target="#home"
+            type="button"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+          >
+            XL
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            (click)="filterSize(pro, 'l')"
+            class="nav-link navLinkAll border-0"
+            id="{{ 'l' + i }}"
+            data-bs-toggle="tab"
+            data-bs-target="#profile"
+            type="button"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            L
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            (click)="filterSize(pro, 'm')"
+            class="nav-link navLinkAll border-0"
+            id="{{ 'm' + i }}"
+            data-bs-toggle="tab"
+            data-bs-target="#contact"
+            type="button"
+            role="tab"
+            aria-controls="contact"
+            aria-selected="false"
+          >
+            M
+          </button>
+        </li>
+      </ul>
 
       <div class="row">
         <div class="col-5">
@@ -307,7 +373,7 @@
           </div>
           <h6 class="mb-3">
             Last {{ reviews.length }}
-            {{ reviews.length == 0 ? "Review" : "Reviews" }} for this product -
+            {{ reviews.length < 2 ? "Review" : "Reviews" }} for this product -
           </h6>
 
           <div class="row gy-2 mh580">
@@ -356,7 +422,7 @@
               <div class="para">
                 <p>Your rating :</p>
               </div>
-              <div class="stars ms-3">
+              <!-- <div class="stars ms-3">
                 <img
                   class="star"
                   src="../../assets/images/star (1).png"
@@ -382,7 +448,7 @@
                   src="../../assets/images/star (1).png"
                   alt=""
                 />
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="row g-3">
@@ -418,10 +484,10 @@
                 </label>
               </div>
             </div> -->
-            <div class="col-12">
+            <div class="col-12" *ngFor="let pro of prod">
               <button
                 class="btn btn-danger px-5 rounded-0"
-                (click)="submit_review(yourreview, name)"
+                (click)="submit_review(pro, yourreview, name)"
                 type="submit"
               >
                 SUBMIT

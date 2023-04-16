@@ -257,27 +257,32 @@
     </div>
     <div class="col-sm-3" *ngFor="let pro of uncat; let i = index">
       <div class="card border-0">
-        <img
-          src="../../assets/images/details_slider/{{ pro.imgs[0] }}"
-          class="img-fluid"
-          alt=""
-        />
+        <a
+          title="{{ pro.desc }}"
+          href="javascript:void(0)"
+          (click)="detailsPage(pro)"
+          routerLink="/product-details"
+          ><img
+            src="../../assets/images/details_slider/{{ pro.imgs[0] }}"
+            class="img-fluid"
+            alt=""
+        /></a>
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ pro.desc }}</h6>
           <p class="text-center mb-0">
             <span class="text-decoration-line-through text-secondary">{{
               pro.showMrp | currency : "INR"
             }}</span>
-            <span class="productPrice">
+            <span class="font600 me-1">
               {{ pro.showPrice | currency : "INR" }}</span
             >
+            <span class="text-danger font600">{{ pro.uncatOffer }}% off</span>
           </p>
 
           <p class="mb-1">
             <span class="fw-bold font9">Available Sizes :</span>
             <span class=""> {{ pro.TitleSizes }}</span>
           </p>
-          <span class="text-danger font600">{{ pro.uncatOffer }}% off</span>
           <ul
             class="nav nav-tabs mb-0 border-0 sizes justify-content-center"
             id="myTab"
@@ -347,25 +352,31 @@
     </div>
     <div class="col-sm-3" *ngFor="let topPro of topProducts; let i = index">
       <div class="card border-0">
-        <img
-          src="../../assets/images/details_slider/{{ topPro.imgs[0] }}"
-          class="img-fluid"
-          alt=""
-        />
+        <a
+          title="{{ topPro.desc }}"
+          href="javascript:void(0)"
+          (click)="detailsPage(topPro)"
+          routerLink="/product-details"
+        >
+          <img
+            src="../../assets/images/details_slider/{{ topPro.imgs[0] }}"
+            class="img-fluid"
+            alt=""
+        /></a>
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ topPro.desc }}</h6>
           <p class="text-center mb-0">
             <span class="text-decoration-line-through text-secondary">{{
               topPro.showTopMrp | currency : "INR"
             }}</span>
-            <span class="productPrice">
+            <span class="font600 me-1">
               {{ topPro.showTopPrice | currency : "INR" }}</span
             >
+            <span class="text-danger font600">{{ topPro.topOffer }}% off</span>
           </p>
           <p class="mb-1">
             <span class="fw-bold font9">Available Sizes :</span>
             <span class=""> {{ topPro.TitleSizes }}</span>
-            <span class="text-danger font600"> {{ topPro.topOffer }}% off</span>
           </p>
           <ul
             class="nav nav-tabs mb-0 border-0 sizes justify-content-center"
@@ -437,25 +448,31 @@
     </div>
     <div class="col-sm-3" *ngFor="let popPro of popularProducts; let i = index">
       <div class="card border-0">
-        <img
-          src="../../assets/images/details_slider/{{ popPro.imgs[0] }}"
-          class="img-fluid"
-          alt=""
-        />
+        <a
+          title="{{ popPro.desc }}"
+          href="javascript:void(0)"
+          (click)="detailsPage(popPro)"
+          routerLink="/product-details"
+        >
+          <img
+            src="../../assets/images/details_slider/{{ popPro.imgs[0] }}"
+            class="img-fluid"
+            alt=""
+        /></a>
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ popPro.desc }}</h6>
           <p class="text-center mb-0">
             <span class="text-decoration-line-through text-secondary">{{
               popPro.showPopMrp | currency : "INR"
             }}</span>
-            <span class="productPrice">
+            <span class="font600 me-1">
               {{ popPro.showPopPrice | currency : "INR" }}</span
             >
+            <span class="text-danger font600">{{ popPro.popOffer }}% off</span>
           </p>
           <p class="mb-1">
             <span class="fw-bold font9">Available Sizes :</span>
             <span class=""> {{ popPro.TitleSizes }}</span>
-            <span class="text-danger font600">{{ popPro.popOffer }}% off</span>
           </p>
           <ul
             class="nav nav-tabs mb-0 border-0 sizes justify-content-center"

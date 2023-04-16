@@ -113,6 +113,7 @@
             >
               <div class="card border-0">
                 <a
+                  title="{{ pro.desc }}"
                   href="javascript:void(0)"
                   (click)="detailsPage(pro)"
                   routerLink="/product-details"
@@ -211,7 +212,12 @@
               *ngFor="let latPro of latest; let i = index"
             >
               <div class="card border-0">
-                <a href="javascript:void(0)" routerLink="/product-details">
+                <a
+                  title="{{ latPro.desc }}"
+                  href="javascript:void(0)"
+                  (click)="detailsPage(latPro)"
+                  routerLink="/product-details"
+                >
                   <img
                     src="../../assets/images/details_slider/{{
                       latPro.imgs[0]

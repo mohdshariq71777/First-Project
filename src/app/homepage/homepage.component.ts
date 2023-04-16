@@ -21,10 +21,14 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
   totalPrice: any;
   localdata: any
   proSize: string;
+  // allproducts: any;
   ngOnInit(): void {
     this.cartProducts = [];
     this.localdata = [];
+    // this.prdSrvc.getProductsJSON().subscribe(res => this.allproducts = res);
+    // console.log(this.allproducts)
     this.allproducts = this.prdSrvc.products;
+    console.log(this.allproducts)
     this.allproducts.forEach(pro => pro.xlSize = pro.price)
     this.allproducts.forEach(pro => pro.lSize = pro.price - 10)
     this.allproducts.forEach(pro => pro.mSize = pro.price - 20)
