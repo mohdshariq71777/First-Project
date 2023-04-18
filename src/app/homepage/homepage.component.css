@@ -15,6 +15,36 @@
   overflow: auto;
 }
 
+@media screen and (max-width:767px) {
+  .card-title {
+    min-height: 38px !important;
+    font-size: 0.7rem;
+  }
+
+  .mrPrice {
+    font-size: 0.7rem;
+  }
+
+  .productPrice {
+    font-size: 1rem;
+  }
+
+  .productOffer {
+    font-size: 0.9rem;
+  }
+
+  .avSize {
+    font-size: 0.7rem !important;
+  }
+
+  .avSizeArray {
+    font-size: 0.7rem !important;
+  }
+
+  .crtBtn {
+    font-size: 0.6rem;
+  }
+}
 
 .card-title {
   min-height: 45px;

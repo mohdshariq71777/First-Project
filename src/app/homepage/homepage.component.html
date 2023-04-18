@@ -127,19 +127,20 @@
                 <div class="card-body border-0 text-center">
                   <h6 class="card-title mb-1">{{ pro.desc }}</h6>
                   <p class="text-center mb-0">
-                    <span class="text-decoration-line-through text-secondary">{{
-                      pro.mrp | currency : "INR"
-                    }}</span>
+                    <span
+                      class="text-decoration-line-through text-secondary mrPrice"
+                      >{{ pro.mrp | currency : "INR" }}</span
+                    >
                     <span class="productPrice">
                       {{ pro.price | currency : "INR" }}
                     </span>
-                    <span class="text-danger font600"
+                    <span class="text-danger font600 productOffer"
                       >{{ pro.offer }}% off</span
                     >
                   </p>
                   <p class="mb-1">
-                    <span class="fw-bold font9">Available Sizes :</span>
-                    <span class=""> {{ pro.TitleSizes }}</span>
+                    <span class="fw-bold font9 avSize">Available Sizes :</span>
+                    <span class="avSizeArray"> {{ pro.TitleSizes }}</span>
                   </p>
                   <ul
                     class="nav nav-tabs mb-0 border-0 sizes justify-content-center"
@@ -193,7 +194,7 @@
                     </li>
                   </ul>
                   <button
-                    class="mt-3 btn btn-sm btn-theme1 px-3 py-1"
+                    class="mt-3 btn btn-sm btn-theme1 px-3 py-1 crtBtn"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasExample"
                     (click)="addToCart(pro)"
@@ -228,19 +229,21 @@
                 <div class="card-body border-0 text-center">
                   <h6 class="card-title mb-1">{{ latPro.desc }}</h6>
                   <p class="text-center mb-0">
-                    <span class="text-decoration-line-through text-secondary">
+                    <span
+                      class="text-decoration-line-through text-secondary mrPrice"
+                    >
                       {{ latPro.mrp | currency : "INR" }}</span
                     >
                     <span class="productPrice">
                       {{ latPro.price | currency : "INR" }}
                     </span>
-                    <span class="text-danger font600"
+                    <span class="text-danger font600 productOffer"
                       >{{ latPro.offer }}% off</span
                     >
                   </p>
                   <p class="mb-1">
-                    <span class="fw-bold font9">Available Sizes :</span>
-                    <span class=""> {{ latPro.TitleSizes }}</span>
+                    <span class="fw-bold font9 avSize">Available Sizes :</span>
+                    <span class="avSizeArray"> {{ latPro.TitleSizes }}</span>
                   </p>
                   <ul
                     class="nav nav-tabs mb-0 border-0 sizes justify-content-center"
@@ -294,7 +297,7 @@
                     </li>
                   </ul>
                   <button
-                    class="mt-3 btn btn-sm btn-theme1 px-3 py-1"
+                    class="mt-3 btn btn-sm btn-theme1 px-3 py-1 crtBtn"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasExample"
                     (click)="addToCart(latPro)"
