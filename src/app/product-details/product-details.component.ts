@@ -15,6 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   localReview: any;
   options: any;
   proSize: any;
+  allProducts: any;
   constructor(private prdSrvc: ProductServiceService) { }
 
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class ProductDetailsComponent implements OnInit {
       }
     })
     console.log(this.prod)
+    this.allProducts = this.prdSrvc.getLocalStorageProducts();
     // this.prod.forEach(pro => pro.price = (pro.price).toFixed(2));
     this.cartProducts = [];
     this.localdata = [];
@@ -53,16 +55,24 @@ export class ProductDetailsComponent implements OnInit {
   }
   submit_review(prodt, r, n) {
     this.myDate = new Intl.DateTimeFormat('en-US', this.options).format(new Date);
-    // pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-    this.prdSrvc.products.forEach(pro => {
-      if (prodt.article !== pro.article) return
-      pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-      if (pro.reviews.length > 4) pro.reviews.shift();
-      this.reviews = pro.reviews;
-      // console.log(pro)
+    (JSON.parse(localStorage.getItem('allReviewsLocal'))).forEach(pro => {
+      if (pro.productId === prodt.productId) {
+        // console.log(pro)
+        pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
+
+        // this.allProducts.forEach(pro => {
+        //   if (prodt.article !== pro.article) return
+        pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
+        if (pro.reviews.length > 4) pro.reviews.shift();
+        this.reviews = pro.reviews;
+        // })
+      }
     })
-    console.log(this.prdSrvc.products)
-    localStorage.setItem('srPrd', JSON.stringify(this.prdSrvc.products))
+
+
+
+    // console.log(this.prdSrvc.products)
+    // localStorage.setItem('allProductsLocal', JSON.stringify(this.allProducts))
     // this.prdSrvc.products.forEach(pro => {
     //   if ( this.prod.map(pro => pro.article)= pro.article) {
     //     console.log(pro)

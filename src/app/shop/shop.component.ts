@@ -21,7 +21,7 @@ export class ShopComponent implements OnInit {
     // this.cartProducts = [];
     this.localdata = [];
     //For All Products
-    this.allProducts = this.prdSrvc.products;
+    this.allProducts = this.prdSrvc.getLocalStorageProducts();
     // this.allProducts = this.prdSrvc.getProductsJSON().subscribe(res => this.allProducts = res);
     this.allProducts.forEach(pro => pro.xlSize = pro.price)
     this.allProducts.forEach(pro => pro.lSize = pro.price - 10)
@@ -66,7 +66,7 @@ export class ShopComponent implements OnInit {
     // this.uncat.forEach(pro => pro.sizes.forEach(size => console.log(size.toUpperCase())))
 
     // **Filter Popular Product**
-    this.popularProducts = this.allProducts.filter(pro => pro.article < 108);
+    this.popularProducts = this.allProducts.filter(pro => pro.productId < 108);
     this.popularProducts.forEach(pro => pro.showPopPrice = pro.price)
     this.popularProducts.forEach(pro => pro.showPopMrp = pro.mrp)
     this.popularProducts.forEach(pro => pro.offer = (100 - (pro.showPopPrice / pro.showPopMrp * 100)).toFixed(2))
