@@ -23,6 +23,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
   proSize: string;
   dbproducts: any;
   dbReviews: any;
+  checkReview: any;
   ngOnInit(): void {
     this.dbproducts = [
       { productId: 101, category: 'shoes', sizes: ['xl', 'l'], colors: ['green', 'blue', 'red'], price: 3299, desc: 'Puma Punch Comfort Unisex Sneakers', imgs: ['product1-slider1.png', 'product1-slider2.png', 'product1-slider3.png', 'product1-slider4.png'], reviews: [] },
@@ -39,6 +40,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
       { productId: 110, category: 'tee', sizes: ['xl', 'l', 'm'], colors: ['green', 'blue', 'red'], price: 1999, desc: `Classics Men's Oversized T-Shirt`, imgs: ['product10-slider1.png', 'product10-slider2.png', 'product10-slider3.png', 'product10-slider4.png'], reviews: [] },
       { productId: 111, category: 'tee', sizes: ['xl', 'm'], colors: ['green', 'blue', 'red'], price: 579, desc: `Essentials Small Logo Regular Fit Men's T-shirt`, imgs: ['product11-slider1.png', 'product11-slider2.png', 'product11-slider3.png', 'product11-slider4.png'], reviews: [] },
     ];
+    this.checkReview = JSON.parse(localStorage.getItem('allReviewsLocal'))
     this.dbReviews = [
       { productId: 101, reviews: [] },
       { productId: 102, reviews: [] },
@@ -52,8 +54,8 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
       { productId: 110, reviews: [] },
       { productId: 111, reviews: [] }
     ]
+    if (this.checkReview = null) localStorage.setItem('allReviewsLocal', JSON.stringify(this.dbReviews))
     localStorage.setItem('allProductsLocal', JSON.stringify(this.dbproducts))
-    localStorage.setItem('allReviewsLocal', JSON.stringify(this.dbReviews))
     this.cartProducts = [];
     this.localdata = [];
     // this.prdSrvc.getProductsJSON().subscribe(res => this.allproducts = res);

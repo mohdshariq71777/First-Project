@@ -16,6 +16,7 @@ export class ProductDetailsComponent implements OnInit {
   options: any;
   proSize: any;
   allProducts: any;
+  myVar: any;
   constructor(private prdSrvc: ProductServiceService) { }
 
   ngOnInit(): void {
@@ -52,47 +53,28 @@ export class ProductDetailsComponent implements OnInit {
     // this.reviews = JSON.parse(localStorage.getItem('srPrd'))
     // this.prod.forEach(pro => this.reviews = pro.reviews ? pro.reviews : [])
     this.prod.forEach(pro => pro.curSize = this.proSize)
+    this.myVar = JSON.parse(localStorage.getItem('allReviewsLocal'))
+    this.prod.forEach(prodt => {
+      this.myVar.forEach(prod => {
+        if (prod.productId === prodt.productId) {
+          // prod.reviews.push({ review: r.value, name: n.value, date: this.myDate })
+          // if (prod.reviews.length > 4) prod.reviews.shift();
+          this.reviews = prod.reviews;
+        }
+      })
+    })
   }
   submit_review(prodt, r, n) {
     this.myDate = new Intl.DateTimeFormat('en-US', this.options).format(new Date);
-    (JSON.parse(localStorage.getItem('allReviewsLocal'))).forEach(pro => {
-      if (pro.productId === prodt.productId) {
-        // console.log(pro)
-        pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-
-        // this.allProducts.forEach(pro => {
-        //   if (prodt.article !== pro.article) return
-        pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-        if (pro.reviews.length > 4) pro.reviews.shift();
-        this.reviews = pro.reviews;
-        // })
+    this.myVar = JSON.parse(localStorage.getItem('allReviewsLocal'))
+    this.myVar.forEach(prod => {
+      if (prod.productId === prodt.productId) {
+        prod.reviews.push({ review: r.value, name: n.value, date: this.myDate })
+        if (prod.reviews.length > 4) prod.reviews.shift();
+        this.reviews = prod.reviews;
       }
     })
-
-
-
-    // console.log(this.prdSrvc.products)
-    // localStorage.setItem('allProductsLocal', JSON.stringify(this.allProducts))
-    // this.prdSrvc.products.forEach(pro => {
-    //   if ( this.prod.map(pro => pro.article)= pro.article) {
-    //     console.log(pro)
-    //     console.log('prodt = ', prodt)
-    //     pro.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-    //   }
-    //   if (pro.reviews.length > 4) pro.reviews.shift();
-    //   this.reviews = pro.reviews;
-    //   // console.log(this.prdSrvc.products)
-    // })
-    // this.options = { year: 'numeric', month: 'long', day: 'numeric' };
-    // // if (pro.reviews.length > 4) pro.reviews.shift();
-    // // this.reviews = pro.reviews;
-    // console.log(prodt)
-
-    // localStorage.setItem('detPro', JSON.stringify(pro))
-    // console.log(pro.reviews)
-    // // this.setLocalStorageRev(pro.reviews)
-    // // this.getLocalStorageRev();
-    // this.reviews = this.localReview ? this.localReview : this.reviews;
+    localStorage.setItem('allReviewsLocal', JSON.stringify(this.myVar));
   }
   //For Cart
   addToCart(pro) {
