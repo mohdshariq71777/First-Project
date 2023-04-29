@@ -65,7 +65,8 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
   submit_review(prodt, r, n) {
-    this.myDate = new Intl.DateTimeFormat('en-US', this.options).format(new Date);
+
+    this.myDate = new Intl.DateTimeFormat('en-IN', { dateStyle: 'long' }).format(new Date);
     this.myVar = JSON.parse(localStorage.getItem('allReviewsLocal'))
     this.myVar.forEach(prod => {
       if (prod.productId === prodt.productId) {
