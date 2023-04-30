@@ -78,10 +78,11 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
       if (pro.price > 12000) {
         pro.mrp = pro.price * 1.2
       }
+      // pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(2)
     })
     this.allproducts.forEach(pro => pro.quantity = 1);
-    this.allproducts.forEach(pro => pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(2))
     this.proSize = "xl";
+    this.allproducts.forEach(pro => pro.offer = (100 - (pro.xlSize / pro.mrp * 100)).toFixed(0))
     this.allproducts.forEach(pro => pro.curSize = this.proSize)
     this.getLocalStorage()
     this.cartProducts = this.localdata ? this.localdata : this.cartProducts;

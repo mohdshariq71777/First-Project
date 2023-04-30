@@ -40,7 +40,7 @@ export class ShopComponent implements OnInit {
         pro.mrp = (pro.price * 1.2).toFixed(2)
       }
     })
-    this.allProducts.forEach(pro => pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(2))
+    this.allProducts.forEach(pro => pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(0))
     this.allProducts.forEach(pro => pro.quantity = 1);
     //For Uncategorized Products
     this.uncat = this.allProducts
@@ -60,7 +60,7 @@ export class ShopComponent implements OnInit {
       }
     })
     this.uncat.forEach(pro => pro.showMrp = pro.mrp)
-    this.uncat.forEach(pro => pro.offer = (100 - (pro.showPrice / pro.showMrp * 100)).toFixed(2))
+    // this.uncat.forEach(pro => pro.offer = (100 - (pro.showPrice / pro.showMrp * 100)).toFixed(0))
     this.uncat.forEach(pro => pro.uncatOffer = pro.offer)
     this.uncat.forEach(pro => pro.TitleSizes = pro.sizes.map(size => size.toUpperCase()))
     // this.uncat.forEach(pro => pro.sizes.forEach(size => console.log(size.toUpperCase())))
@@ -69,7 +69,7 @@ export class ShopComponent implements OnInit {
     this.popularProducts = this.allProducts.filter(pro => pro.productId < 108);
     this.popularProducts.forEach(pro => pro.showPopPrice = pro.price)
     this.popularProducts.forEach(pro => pro.showPopMrp = pro.mrp)
-    this.popularProducts.forEach(pro => pro.offer = (100 - (pro.showPopPrice / pro.showPopMrp * 100)).toFixed(2))
+    this.popularProducts.forEach(pro => pro.offer = (100 - (pro.showPopPrice / pro.showPopMrp * 100)).toFixed(0))
     this.popularProducts.forEach(pro => pro.popOffer = pro.offer)
 
 
@@ -77,7 +77,7 @@ export class ShopComponent implements OnInit {
     this.topProducts = this.allProducts.filter(pro => pro.price < 3000 && pro.price >= 1500);
     this.topProducts.forEach(pro => pro.showTopPrice = pro.price)
     this.topProducts.forEach(pro => pro.showTopMrp = pro.mrp)
-    this.topProducts.forEach(pro => pro.offer = (100 - (pro.showTopPrice / pro.showTopMrp * 100)).toFixed(2))
+    this.topProducts.forEach(pro => pro.offer = (100 - (pro.showTopPrice / pro.showTopMrp * 100)).toFixed(0))
     this.topProducts.forEach(pro => pro.topOffer = pro.offer)
     this.getLocalStorage()
     this.cartProducts = this.localdata ? this.localdata : [];
@@ -89,15 +89,12 @@ export class ShopComponent implements OnInit {
     console.log(pro)
     if (size === "xl") {
       pro.showPrice = pro.xlSize;
-      pro.uncatOffer = (100 - (pro.showPrice / pro.showMrp * 100)).toFixed(2)
     }
     if (size === "l") {
       pro.showPrice = pro.lSize;
-      pro.uncatOffer = (100 - (pro.showPrice / pro.showMrp * 100)).toFixed(2)
     }
     if (size === "m") {
       pro.showPrice = pro.mSize;
-      pro.uncatOffer = (100 - (pro.showPrice / pro.showMrp * 100)).toFixed(2)
     }
     if (pro.showPrice <= 5000) {
       pro.mrp = (pro.showPrice * 1.5).toFixed(2)
@@ -112,21 +109,22 @@ export class ShopComponent implements OnInit {
       pro.mrp = (pro.showPrice * 1.2).toFixed(2)
     }
     pro.showMrp = pro.mrp;
+    pro.offer == (100 - (pro.price / pro.mrp * 100)).toFixed(0)
   }
 
   //For Top Products
   filterSizeTop(top, size) {
     if (size === "xl") {
       top.showTopPrice = top.xlSize;
-      top.topOffer = (100 - (top.showTopPrice / top.showMrp * 100)).toFixed(2)
+      // top.topOffer = (100 - (top.showTopPrice / top.showMrp * 100)).toFixed(0)
     }
     if (size === "l") {
       top.showTopPrice = top.lSize;
-      top.topOffer = (100 - (top.showTopPrice / top.showMrp * 100)).toFixed(2)
+      // top.topOffer = (100 - (top.showTopPrice / top.showMrp * 100)).toFixed(0)
     }
     if (size === "m") {
       top.showTopPrice = top.mSize;
-      top.topOffer = (100 - (top.showTopPrice / top.showMrp * 100)).toFixed(2)
+      // top.topOffer = (100 - (top.showTopPrice / top.showMrp * 100)).toFixed(0)
     }
     // Top Products MRP
     if (top.showTopPrice <= 5000) {
@@ -142,21 +140,22 @@ export class ShopComponent implements OnInit {
       top.mrp = (top.showTopPrice * 1.2).toFixed(2)
     }
     top.showTopMrp = top.mrp;
+    top.offer = (100 - (top.showTopPrice / top.mrp * 100)).toFixed(0)
   }
 
   //For Popular Products
   filterSizePop(pop, size) {
     if (size === "xl") {
       pop.showPopPrice = pop.xlSize;
-      pop.popOffer = (100 - (pop.showPopPrice / pop.showMrp * 100)).toFixed(2)
+      // pop.popOffer = (100 - (pop.showPopPrice / pop.showMrp * 100)).toFixed(0)
     }
     if (size === "l") {
       pop.showPopPrice = pop.lSize;
-      pop.popOffer = (100 - (pop.showPopPrice / pop.showMrp * 100)).toFixed(2)
+      // pop.popOffer = (100 - (pop.showPopPrice / pop.showMrp * 100)).toFixed(0)
     }
     if (size === "m") {
       pop.showPopPrice = pop.mSize;
-      pop.popOffer = (100 - (pop.showPopPrice / pop.showMrp * 100)).toFixed(2)
+      // pop.popOffer = (100 - (pop.showPopPrice / pop.showMrp * 100)).toFixed(0)
     }
     // Popular Products MRP
     if (pop.showPopPrice <= 5000) {
@@ -172,6 +171,7 @@ export class ShopComponent implements OnInit {
       pop.mrp = (pop.showPopPrice * 1.2).toFixed(2)
     }
     pop.showPopMrp = pop.mrp;
+    pop.offer = (100 - (pop.showPopPrice / pop.mrp * 100)).toFixed(0)
   }
 
   // **Filter by Price**

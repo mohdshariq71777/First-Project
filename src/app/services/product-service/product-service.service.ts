@@ -35,30 +35,29 @@ export class ProductServiceService {
     this.proSize = size;
     if (this.proSize === "xl") {
       pro.price = pro.xlSize;
-      // pro.offer = (100 - (pro.xlSize / pro.mrp * 100)).toFixed(2)
+      // pro.offer = (100 - (pro.xlSize / pro.mrp * 100)).toFixed(2);
     }
     if (this.proSize === "l") {
       pro.price = pro.lSize;
-      // pro.offer = (100 - (pro.lSize / pro.mrp * 100)).toFixed(2)
+      // pro.offer = (100 - (pro.lSize / pro.mrp * 100)).toFixed(2);
     }
     if (this.proSize === "m") {
       pro.price = pro.mSize;
-      // pro.offer = (100 - (pro.mSize / pro.mrp * 100)).toFixed(2)
+      // pro.offer = (100 - (pro.mSize / pro.mrp * 100)).toFixed(2);
     }
     if (pro.price <= 5000) {
-      pro.mrp = pro.price * 1.5
+      pro.mrp = pro.price * 1.5;
     }
     if (pro.price > 5000) {
-      pro.mrp = pro.price * 1.4
+      pro.mrp = pro.price * 1.4;
     }
     if (pro.price > 8000) {
-      pro.mrp = pro.price * 1.3
+      pro.mrp = pro.price * 1.3;
     }
     if (pro.price > 12000) {
-      pro.mrp = pro.price * 1.2
+      pro.mrp = pro.price * 1.2;
     }
-    pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(2)
-    // pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(2)
+    pro.offer = (100 - (pro.price / pro.mrp * 100)).toFixed(0)
   }
   detailsPage(pro) {
     if (localStorage.getItem('detPro')) localStorage.removeItem('detPro')
