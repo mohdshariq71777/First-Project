@@ -12,11 +12,13 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HttpClientModule } from '@angular/common/http'
 import { WorkingService } from './services/working-service/working.service';
+import { CartComponent } from './cart/cart.component';
 const approutes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'shop', component: ShopComponent },
-  { path: 'product-details', component: ProductDetailsComponent }
+  { path: 'product-details', component: ProductDetailsComponent },
+  { path: 'cart', component: CartComponent }
 ]
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ const approutes: Routes = [
     HomepageComponent,
     AboutUsComponent,
     ShopComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

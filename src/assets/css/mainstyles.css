@@ -10,6 +10,10 @@
   font-weight: 600 !important;
 }
 
+.font700 {
+  font-weight: 700 !important;
+}
+
 .minhyt70 {
   min-height: 78.6vh;
 }
@@ -48,6 +52,7 @@
 .btn-theme1 {
   background: linear-gradient(45deg, #f91d50, #c12559);
   color: #fff !important;
+  border-radius: 0px !important;
 }
 
 .btn-theme1:hover {
@@ -57,6 +62,7 @@
 .btn-theme2 {
   background: linear-gradient(95deg, #ee7436, #e39b42);
   color: #fff !important;
+  border-radius: 0px !important;
 }
 
 .btn-theme2:hover {
@@ -85,4 +91,12 @@
     padding: 5px 0px !important;
     width: 28px;
   }
+}
+
+.modal-content {
+  border-radius: 0px !important;
+}
+
+.text-theme {
+  color: #ed043b;
 }

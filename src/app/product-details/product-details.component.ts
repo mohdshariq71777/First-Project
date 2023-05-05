@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductServiceService } from '../services/product-service/product-service.service';
+import { WorkingService } from '../services/working-service/working.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -17,7 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   proSize: any;
   allProducts: any;
   myVar: any;
-  constructor(private prdSrvc: ProductServiceService) { }
+  constructor(private prdSrvc: ProductServiceService, private wrSrvc: WorkingService) { }
 
   ngOnInit(): void {
     // this.prod = [];
@@ -114,7 +115,9 @@ export class ProductDetailsComponent implements OnInit {
     this.cartProducts.forEach(prod => allPrices.push(Number.parseFloat(prod.cartPrice)))
     this.totalPrice = (allPrices.reduce((a, pr) => (a + pr), 0)).toFixed(2);
   };
-
+  goToCart() {
+    this.wrSrvc.scrollTop()
+  }
   //For Local Storage
   setLocalStorage(arr) {
     this.prdSrvc.setLocalStorageCart(arr)

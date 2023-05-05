@@ -230,6 +230,9 @@ export class ShopComponent implements OnInit {
     this.cartProducts.forEach(prod => allPrices.push(Number.parseFloat(prod.cartPrice)))
     this.totalPrice = (allPrices.reduce((a, pr) => (a + pr), 0)).toFixed(2);
   };
+  goToCart() {
+    this.wrSrvc.scrollTop()
+  }
 
   //For Local Storage
   setLocalStorage(data) {

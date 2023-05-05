@@ -179,7 +179,7 @@
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasExample"
             type="button"
-            class="btn btn-danger rounded-0 w-100 ms-2"
+            class="btn btn-theme1 w-100 ms-2"
             (click)="addToCart(pro)"
           >
             Add to Cart
@@ -486,7 +486,7 @@
             </div> -->
             <div class="col-12" *ngFor="let pro of prod">
               <button
-                class="btn btn-danger px-5 rounded-0"
+                class="btn btn-danger px-5"
                 (click)="submit_review(pro, yourreview, name)"
                 type="submit"
               >
@@ -650,7 +650,9 @@
   aria-labelledby="offcanvasExampleLabel"
 >
   <div class="offcanvas-header px-3 py-2">
-    <h5 class="offcanvas-title font600" id="offcanvasExampleLabel">My Cart</h5>
+    <h4 class="offcanvas-title font700 text-theme" id="offcanvasExampleLabel">
+      My Cart
+    </h4>
     <button
       type="button"
       class="btn-close btn-sm"
@@ -722,12 +724,21 @@
         <span class="text-success">{{ totalPrice | currency : "INR" }}</span>
       </p>
     </div>
+    <div class="text-center my-3">
+      <button
+        (click)="goToCart()"
+        routerLink="/cart"
+        class="btn-sm btn btn-theme1"
+      >
+        Go to Cart
+      </button>
+    </div>
   </div>
   <div class="offcanvas-body" *ngIf="cartProducts.length == 0">
     <label class="mb-2" for="">Your cart is empty :)</label>
     <p>
       <button data-bs-dismiss="offcanvas" class="btn btn-sm btn-theme1">
-        Shop now
+        Shop Now
       </button>
     </p>
   </div>

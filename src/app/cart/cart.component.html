@@ -1,0 +1,131 @@
+<app-header></app-header>
+<div class="container-fluid minhyt290px p-4">
+  <div class="row" *ngIf="cartProducts.length > 0">
+    <div class="col-12">
+      <div class="row row-child">
+        <div class="col-6"><h6 class="mb-0 font600">Product</h6></div>
+        <div class="col-2"><h6 class="mb-0 font600">Price</h6></div>
+        <div class="col-2"><h6 class="mb-0 font600">Quantity</h6></div>
+        <div class="col-2"><h6 class="mb-0 font600">Total</h6></div>
+      </div>
+      <hr />
+      <div
+        class="row row-child1 gy-3"
+        *ngFor="let cartPro of cartProducts; let i = index"
+      >
+        <div class="col-6">
+          <div class="row">
+            <div class="col-2">
+              <img
+                src="../../assets/images/details_slider/product1-slider2.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div class="col-10">
+              <p class="fw-bold mb-0">
+                {{ cartPro.desc }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-2 text-danger">
+          <label class="font600">{{ cartPro.price | currency : "INR" }}</label>
+        </div>
+        <div class="col-2">
+          <div class="number-input">
+            <input
+              id="q{{ i }}"
+              (change)="changeQuant($event, cartPro)"
+              min="1"
+              type="number"
+              [(ngModel)]="cartPro.quantity"
+              class="form-control w-50"
+            />
+          </div>
+        </div>
+        <div class="col-2 justify-content-between d-flex">
+          <label for="" class="text-danger fw-bold">
+            {{ cartPro.cartPrice | currency : "INR" }}
+          </label>
+          <a
+            data-bs-toggle="modal"
+            data-bs-target="#removeModal"
+            (click)="sendIndex(i)"
+            href="javascript:void(0)"
+            class="text-secondary"
+            ><i class="fa fa-times"></i
+          ></a>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="row row-third justify-content-between">
+        <div class="col-10"><h6 class="mb-0 font600">Subtotal</h6></div>
+        <div class="col-2"><label>250</label></div>
+      </div>
+      <hr />
+      <div class="row grand-row1 justify-content-between">
+        <div class="col-10"><h6 class="mb-0 font600">Shipping</h6></div>
+        <div class="col-2"><label>Free Shipping</label></div>
+      </div>
+      <hr />
+      <div class="row justify-content-between">
+        <div class="col-10"><h6 class="mb-0 font600">Grand Total</h6></div>
+        <div class="col-2"><label>259</label></div>
+      </div>
+      <div class="row grand-row5">
+        <div class="col-12">
+          <button
+            type="button"
+            class="btn btn-danger rounded-0 d-flex px-5 mx-auto"
+          >
+            PROCEED TO CHECKOUT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row align-items-center h-inherit"
+    *ngIf="cartProducts.length == 0"
+  >
+    <div class="col-sm-12 text-center">
+      <h2 class="text-theme">Please add a product to cart</h2>
+      <p class="text-primary">Your cart is empty right now</p>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<div
+  class="modal fade"
+  id="removeModal"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center py-4">
+        <div for="text-center">
+          <p class="mb-2">Are you sure you want to remove this product?</p>
+          <p class="mb-0">
+            <button
+              data-bs-dismiss="modal"
+              (click)="removePro()"
+              class="btn btn-sm btn-theme1 px-3 me-2"
+            >
+              Yes
+            </button>
+            <button data-bs-dismiss="modal" class="btn btn-sm btn-theme2 px-3">
+              No
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

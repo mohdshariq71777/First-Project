@@ -91,6 +91,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
     this.prdSrvc.detailsPage(pro)
     this.wrSrvc.scrollTop()
   }
+
   filterSize(pro, size) {
     this.prdSrvc.filterSize(pro, size)
     this.proSize = this.prdSrvc.proSize;
@@ -136,6 +137,9 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
     this.cartProducts.forEach(prod => allPrices.push(Number.parseFloat(prod.cartPrice)))
     this.totalPrice = (allPrices.reduce((a, pr) => (a + pr), 0)).toFixed(2);
   };
+  goToCart() {
+    this.wrSrvc.scrollTop()
+  }
 
   //For Local Storage
   setLocalStorage(data) {

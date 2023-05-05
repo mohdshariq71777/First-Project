@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container-fluid minhyt70">
+<div class="container-fluid minhyt70 pb-3">
   <div class="row gx-3 gy-2">
     <div class="col-sm-12">
       <div class="row mt-2 p-2 bg-light m-0 align-items-center">
@@ -583,7 +583,9 @@
   aria-labelledby="offcanvasExampleLabel"
 >
   <div class="offcanvas-header px-3 py-2">
-    <h5 class="offcanvas-title font600" id="offcanvasExampleLabel">My Cart</h5>
+    <h4 class="offcanvas-title font700 text-theme" id="offcanvasExampleLabel">
+      My Cart
+    </h4>
     <button
       type="button"
       class="btn-close btn-sm"
@@ -654,6 +656,15 @@
         <span class="fw-bold">Total Amount : </span>
         <span class="text-success">{{ totalPrice | currency : "INR" }}</span>
       </p>
+    </div>
+    <div class="text-center my-3">
+      <button
+        (click)="goToCart()"
+        routerLink="/cart"
+        class="btn-sm btn btn-theme1"
+      >
+        Go to Cart
+      </button>
     </div>
   </div>
   <div class="offcanvas-body" *ngIf="cartProducts.length == 0">
