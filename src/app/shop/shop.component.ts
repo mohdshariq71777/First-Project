@@ -81,6 +81,7 @@ export class ShopComponent implements OnInit {
     this.topProducts.forEach(pro => pro.topOffer = pro.offer)
     this.getLocalStorage()
     this.cartProducts = this.localdata ? this.localdata : [];
+    this.cartProducts.forEach(pro => pro.cartPrice = pro.price * pro.quantity)
   }
 
   // **Filter by Size**

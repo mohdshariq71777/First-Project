@@ -100,3 +100,13 @@
 .text-theme {
   color: #ed043b;
 }
+
+body {
+  padding-right: 0 !important;
+  overflow: auto !important;
+}
+
+.modal-open {
+  overflow: auto;
+  padding-right: 0 !important;
+}

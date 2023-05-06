@@ -11,31 +11,31 @@
       <hr />
       <div
         class="row row-child1 gy-3"
-        *ngFor="let cartPro of cartProducts; let i = index"
+        *ngFor="let cartPro of cartProducts; let ind = index"
       >
         <div class="col-6">
           <div class="row">
             <div class="col-2">
               <img
-                src="../../assets/images/details_slider/product1-slider2.png"
+                src="../../assets/images/details_slider/{{ cartPro.imgs[0] }}"
                 alt=""
                 class="img-fluid"
               />
             </div>
             <div class="col-10">
-              <p class="fw-bold mb-0">
+              <h5 class="text-theme font600 mb-0">
                 {{ cartPro.desc }}
-              </p>
+              </h5>
             </div>
           </div>
         </div>
-        <div class="col-2 text-danger">
-          <label class="font600">{{ cartPro.price | currency : "INR" }}</label>
+        <div class="col-2">
+          <label class="">{{ cartPro.price | currency : "INR" }}</label>
         </div>
         <div class="col-2">
           <div class="number-input">
             <input
-              id="q{{ i }}"
+              id="q{{ ind }}"
               (change)="changeQuant($event, cartPro)"
               min="1"
               type="number"
@@ -45,13 +45,13 @@
           </div>
         </div>
         <div class="col-2 justify-content-between d-flex">
-          <label for="" class="text-danger fw-bold">
+          <label for="" class="">
             {{ cartPro.cartPrice | currency : "INR" }}
           </label>
           <a
             data-bs-toggle="modal"
             data-bs-target="#removeModal"
-            (click)="sendIndex(i)"
+            (click)="sendIndex(ind)"
             href="javascript:void(0)"
             class="text-secondary"
             ><i class="fa fa-times"></i
@@ -63,7 +63,9 @@
     <div class="col-12">
       <div class="row row-third justify-content-between">
         <div class="col-10"><h6 class="mb-0 font600">Subtotal</h6></div>
-        <div class="col-2"><label>250</label></div>
+        <div class="col-2">
+          <label>{{ totalPrice | currency : "INR" }}</label>
+        </div>
       </div>
       <hr />
       <div class="row grand-row1 justify-content-between">
@@ -73,7 +75,9 @@
       <hr />
       <div class="row justify-content-between">
         <div class="col-10"><h6 class="mb-0 font600">Grand Total</h6></div>
-        <div class="col-2"><label>259</label></div>
+        <div class="col-2">
+          <h6 class="font600">{{ totalPrice | currency : "INR" }}</h6>
+        </div>
       </div>
       <div class="row grand-row5">
         <div class="col-12">

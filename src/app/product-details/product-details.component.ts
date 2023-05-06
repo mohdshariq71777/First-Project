@@ -64,6 +64,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       })
     })
+    this.cartProducts.forEach(pro => pro.cartPrice = pro.price * pro.quantity);
   }
   submit_review(prodt, r, n) {
 

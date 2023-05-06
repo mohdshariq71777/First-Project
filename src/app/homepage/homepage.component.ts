@@ -86,6 +86,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
     this.allproducts.forEach(pro => pro.curSize = this.proSize)
     this.getLocalStorage()
     this.cartProducts = this.localdata ? this.localdata : this.cartProducts;
+    this.cartProducts.forEach(pro => pro.cartPrice = pro.price * pro.quantity)
   }
   detailsPage(pro) {
     this.prdSrvc.detailsPage(pro)
@@ -110,7 +111,6 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
     }
     pro.cartPrice = pro.price * pro.quantity;
     this.totalPrice = this.cartProducts.reduce((a, pro) => pro.cartPrice + a, 0);
-    this.totalPrice = this.cartProducts.reduce((a, prod) => prod.cartPrice + a, 0)
     const allPrices = [];
     this.setLocalStorage(this.cartProducts)
     this.cartProducts.forEach(prod => allPrices.push(Number.parseFloat(prod.cartPrice)))
