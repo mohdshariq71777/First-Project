@@ -18,6 +18,9 @@ export class ProductDetailsComponent implements OnInit {
   proSize: any;
   allProducts: any;
   myVar: any;
+  inputEmail: string;
+  inputName: string;
+  inputReview: boolean;
   constructor(private prdSrvc: ProductServiceService, private wrSrvc: WorkingService) { }
 
   ngOnInit(): void {
@@ -65,19 +68,51 @@ export class ProductDetailsComponent implements OnInit {
       })
     })
     this.cartProducts.forEach(pro => pro.cartPrice = pro.price * pro.quantity);
+    this.inputEmail = 'true';
+    this.inputReview = true;
+    this.inputName = 'true';
   }
-  submit_review(prodt, r, n) {
-
-    this.myDate = new Intl.DateTimeFormat('en-IN', { dateStyle: 'long' }).format(new Date);
-    this.myVar = JSON.parse(localStorage.getItem('allReviewsLocal'))
-    this.myVar.forEach(prod => {
-      if (prod.productId === prodt.productId) {
-        prod.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-        if (prod.reviews.length > 4) prod.reviews.shift();
-        this.reviews = prod.reviews;
+  submit_review(prodt, e, r, n) {
+    if (!e.value || !r.value || !n.value) {
+      if (!e.value) this.inputEmail = 'false';
+      if (!r.value) this.inputReview = false;
+      if (!n.value) this.inputName = 'false';
+      console.log('condition 1')
+      return
+    }
+    else {
+      const checkEmail = /^[A-Za-z._0-9]{3,}@[A-Za-z.]{3,}[A-Za-z]$/
+      const checkName = /^[A-Za-z A-Za-z]{3,}$/
+      if (checkName.test(n.value)) {
+        this.inputEmail = 'true';
+        this.inputReview = true;
+        this.inputName = 'true';
+        console.log('condition 2')
+        if (!checkEmail.test(e.value)) {
+          this.inputEmail = 'error'
+          return
+        }
+        this.myDate = new Intl.DateTimeFormat('en-IN', { dateStyle: 'long', timeStyle: 'short' }).format(new Date);
+        this.myVar = JSON.parse(localStorage.getItem('allReviewsLocal'))
+        this.myVar.forEach(prod => {
+          if (prod.productId === prodt.productId) {
+            prod.reviews.push({ review: r.value, email: e.value, name: n.value, date: this.myDate })
+            if (prod.reviews.length > 4) prod.reviews.shift();
+            this.reviews = prod.reviews;
+          }
+        })
+        localStorage.setItem('allReviewsLocal', JSON.stringify(this.myVar));
+        e.value = ''
+        r.value = ''
+        n.value = ''
       }
-    })
-    localStorage.setItem('allReviewsLocal', JSON.stringify(this.myVar));
+      else {
+        console.log('condition 3')
+        this.inputName = 'error';
+        return
+
+      }
+    }
   }
   //For Cart
   addToCart(pro) {

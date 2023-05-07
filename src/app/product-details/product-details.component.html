@@ -396,6 +396,9 @@
                       <span class="font9">{{ rv.date }}</span>
                     </p>
                     <p class="mb-0">
+                      <span class="font8">Email - {{ rv.email }}</span>
+                    </p>
+                    <p class="mb-0">
                       <span class="font8">Review - {{ rv.review }}</span>
                     </p>
                   </div>
@@ -452,16 +455,7 @@
             </div>
           </div>
           <div class="row g-3">
-            <div class="col-md-6">
-              <label for="inputText" class="form-label">Review</label>
-              <input
-                #yourreview
-                type="text"
-                class="form-control rounded-0"
-                id="inputText"
-              />
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="yourName" class="form-label">Your Name</label>
               <input
                 #name
@@ -469,7 +463,64 @@
                 class="form-control rounded-0"
                 id="yourName"
               />
+              <label
+                for=""
+                class="text-danger small d-none"
+                *ngIf="inputName === 'true'"
+                >Please enter your name</label
+              >
+              <label
+                for=""
+                class="text-danger small"
+                *ngIf="inputName === 'false'"
+                >Please enter your name</label
+              >
+              <label
+                for=""
+                class="text-danger small"
+                *ngIf="inputName === 'error'"
+                >Please check your name
+              </label>
             </div>
+            <div class="col-md-4">
+              <label for="inputText" class="form-label">Review</label>
+              <input
+                #yourreview
+                type="text"
+                class="form-control rounded-0"
+                id="inputText"
+              />
+              <label for="" class="text-danger small" *ngIf="!inputReview"
+                >Please write your review</label
+              >
+            </div>
+            <div class="col-md-4">
+              <label for="yourEmail" class="form-label">Your Email</label>
+              <input
+                #email
+                type="email"
+                class="form-control rounded-0"
+                id="yourEmail"
+              />
+              <label
+                for=""
+                class="emailmsg d-none text-danger small"
+                *ngIf="inputEmail === 'true'"
+              ></label>
+              <label
+                for=""
+                class="emailmsg text-danger small"
+                *ngIf="inputEmail === 'false'"
+                >Please enter your email</label
+              >
+              <label
+                for=""
+                class="emailmsg text-danger small"
+                *ngIf="inputEmail === 'error'"
+                >Please check your email</label
+              >
+            </div>
+
             <!-- <div class="col-12">
               <div class="form-check">
                 <input
@@ -487,7 +538,7 @@
             <div class="col-12" *ngFor="let pro of prod">
               <button
                 class="btn btn-theme1 px-5"
-                (click)="submit_review(pro, yourreview, name)"
+                (click)="submit_review(pro, email, yourreview, name)"
                 type="submit"
               >
                 SUBMIT

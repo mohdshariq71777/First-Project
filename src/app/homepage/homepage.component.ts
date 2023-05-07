@@ -96,6 +96,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
   filterSize(pro, size) {
     this.prdSrvc.filterSize(pro, size)
     this.proSize = this.prdSrvc.proSize;
+    pro.curSize = this.proSize;
   }
   filterLatest() {
     this.latest = this.allproducts.filter(pro => (pro.productId) > 104)
