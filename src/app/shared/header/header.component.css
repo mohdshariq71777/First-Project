@@ -1,9 +1,17 @@
 .navbar-brand img {
-    width: 140px;
+  width: 140px;
+}
+
+.menus .nav-link {
+  background: transparent;
 }
 
 .menus .nav-link.active {
-    border-bottom: 2px solid #646464 !important;
-    color: #646464;
-    font-weight: 600;
+  border-bottom: 2px solid #646464 !important;
+  color: #646464;
+  font-weight: 600;
+}
+
+.fa-cart-shopping {
+  color: #ed043b;
 }

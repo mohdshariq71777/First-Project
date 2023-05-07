@@ -1,13 +1,12 @@
 .filters .nav-link {
   border: none !important;
-  color: #646464
+  color: #646464;
 }
 
 .filters .nav-link.active {
-  /* border-bottom: 2px solid #646464 !important; */
-  background: #dddddd;
-  color: #c12559;
-  font-weight: 600;
+  background: transparent;
+  color: #ed043b;
+  font-weight: 700;
   border-radius: 0px;
 }
 
@@ -37,11 +36,22 @@
   font-weight: 600;
 }
 
+#productType .form-check input:checked,
+#size .form-check input:checked,
+#price .form-check input:checked {
+  background-color: #ed043b;
+  border-color: #ed043b;
+}
+
 /* For Mobile Case Only*/
 @media screen and (max-width: 767px) {
   .card-title {
     min-height: 38px !important;
     font-size: 0.7rem;
+  }
+
+  .filters .nav-link {
+    font-size: 0.8rem;
   }
 
   .mrPrice {
@@ -50,5 +60,37 @@
 
   .productPrice {
     font-size: 1rem;
+  }
+
+  .productOffer {
+    font-size: 0.9rem;
+  }
+
+  .avSize {
+    font-size: 0.7rem !important;
+  }
+
+  .avSizeArray {
+    font-size: 0.7rem !important;
+  }
+
+  .crtBtn {
+    font-size: 0.6rem;
+  }
+
+  #productType .form-check,
+  #size .form-check,
+  #price .form-check {
+    font-size: 0.8rem;
+  }
+
+  #productType .btn-theme1,
+  #size .btn-theme1,
+  #price .btn-theme1 {
+    font-size: 0.7rem
+  }
+
+  .filters .nav-link {
+    padding: 5px 10px
   }
 }

@@ -110,3 +110,7 @@ body {
   overflow: auto;
   padding-right: 0 !important;
 }
+
+.bgtheme {
+  background: linear-gradient(to right bottom, #FBFBBB 28%, #fff88f 76%);
+}

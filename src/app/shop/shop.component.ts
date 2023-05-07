@@ -248,4 +248,9 @@ export class ShopComponent implements OnInit {
     this.prdSrvc.detailsPage(pro)
     this.wrSrvc.scrollTop()
   }
+  toggleFilt() {
+    const filterOpt = Array.from(document.querySelectorAll('.filterOptions'))
+    filterOpt.forEach(child => child.classList.toggle('d-none'))
+    this.uncat = this.allProducts;
+  }
 }

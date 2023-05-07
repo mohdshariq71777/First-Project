@@ -1,9 +1,3 @@
-@media only screen and (min-width: 768px) {
-  h4 {
-    font-size: 1.37931em;
-  }
-}
-
 h4 {
   font-size: 1.03448em;
 }
@@ -14,4 +8,19 @@ h4 {
 
 .footer-list li a:hover {
   color: #ed043b !important;
+}
+
+.logo {
+  width: 200px;
+}
+
+/* For Mobile Only */
+@media only screen and (min-width: 768px) {
+  h4 {
+    font-size: 1.37931em;
+  }
+
+  .logo {
+    width: 150px;
+  }
 }

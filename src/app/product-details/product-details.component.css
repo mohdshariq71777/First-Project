@@ -33,3 +33,23 @@
 .links {
   font-size: 13px;
 }
+
+/* For only Desktop & IPad */
+@media screen and (min-width:768px) {
+  .sizes .nav-link {
+    color: #646464;
+    margin-inline: 5px;
+    border-radius: 1.5px;
+    width: 40px;
+    padding: 5px 0px;
+    height: auto;
+    font-size: 0.8rem;
+  }
+}
+
+/* For only Mobile */
+@media screen and (max-width:767px) {
+  .font1_2 {
+    font-size: 1.2rem;
+  }
+}
