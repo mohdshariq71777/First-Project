@@ -1,12 +1,4 @@
-<header>
-  <!-- Content -->
-</header>
-
-<main>
-  <!-- Content -->
-</main>
-
-<footer class="footer shadow-lg pt-0">
+<!-- <footer class="footer shadow-lg pt-0">
   <div class="row justify-content-center py-3">
     <div class="col-sm-3 text-center">
       <a
@@ -20,11 +12,7 @@
   </div>
   <div class="row">
     <div class="col-sm-3">
-      <div class="footer__addr">
-        <h1 class="footer__logo">
-          <img src="../../../assets/images/fabRoolz.svg" alt="" />
-        </h1>
-
+         <img src="../../../assets/images/fabRoolz.svg" alt="" />
         <h2 class="fs-6 font600">Mohd Shariq</h2>
 
         <address class="text-wrap">
@@ -39,7 +27,7 @@
           >
         </address>
       </div>
-    </div>
+
     <div class="col-sm-3 col-6">
       <div>
         <h4><b>Information</b></h4>
@@ -149,10 +137,146 @@
     </div>
   </div>
 
-  <div>
+  <div class="text-center">
     <p>
       &copy; 2023 <span class="font600 text-dark">Fab Roolz</span> - All rights
       reserved.
     </p>
   </div>
-</footer>
+</footer> -->
+<div class="container-fluid">
+  <div class="row justify-content-center py-3">
+    <div class="col-sm-3 text-center">
+      <a
+        href="javascript:void(0)"
+        class="text-theme font600"
+        (click)="scroll()"
+      >
+        <i class="fa fa-arrow-up"></i> Back to Top</a
+      >
+    </div>
+  </div>
+  <div class="row gy-sm-0 gy-3">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <img src="../../../assets/images/fabRoolz.svg" alt="" />
+        </div>
+        <div class="col-md-12">
+          <h5 class="font600">Mohd Shariq</h5>
+        </div>
+        <div class="col-md-12">
+          <p class="text-wrap mb-2">
+            House Number-43 , Gali Number-1,Jafrabad,New Seelampur,Delhi-110053
+          </p>
+
+          <label for="">Email : </label>
+          <a
+            class="text-decoration-none text-dark"
+            href="mailto:mohdshariq71777@gmail.com"
+          >
+            mohdshariq71777@gmail.com</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-md col-6">
+      <h4 class="mb-md-3 mb-2">Information</h4>
+      <ul class="p-0 footer-list" type="none">
+        <li>
+          <a
+            routerLink="/"
+            (click)="scroll()"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            (click)="scroll()"
+            routerLink="/about-us"
+            routerLinkActive="active"
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >About Us</a
+          >
+        </li>
+        <li>
+          <a
+            (click)="scroll()"
+            routerLinkActive="active"
+            routerLink="/shop"
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >Shop</a
+          >
+        </li>
+        <li>
+          <a
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >Contact Us</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-md col-6">
+      <h4 class="mb-md-3 mb-2">Need Help</h4>
+      <ul class="p-0 footer-list" type="none">
+        <li>
+          <a
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >Track Orders</a
+          >
+        </li>
+        <li>
+          <a
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >Customer Support</a
+          >
+        </li>
+        <li>
+          <a
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >Privacy Policy</a
+          >
+        </li>
+        <li>
+          <a
+            class="list-items text-decoration-none text-dark"
+            href="javascript:void(0)"
+            >Refund Policy</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-md">
+      <h4 class="mb-md-3 mb-2">Newsletter</h4>
+      <p>Get instant updates about our new products and special promos!</p>
+      <input
+        type="text"
+        class="form-control border-0 border-bottom mb-3"
+        placeholder="Enter your email here"
+        aria-label="Enter your email here"
+      />
+
+      <div class="mb-sm-0 mb-2">
+        <button type="button" class="btn btn-theme1 px-5 rounded-0">
+          SUBSCRIBE
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <p>
+      &copy; 2023 <span class="font600 text-dark">Fab Roolz</span> - All rights
+      reserved.
+    </p>
+  </div>
+</div>

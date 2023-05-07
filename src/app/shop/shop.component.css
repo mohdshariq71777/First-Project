@@ -32,3 +32,23 @@
 .card-title {
   min-height: 45px;
 }
+
+.productPrice {
+  font-weight: 600;
+}
+
+/* For Mobile Case Only*/
+@media screen and (max-width: 767px) {
+  .card-title {
+    min-height: 38px !important;
+    font-size: 0.7rem;
+  }
+
+  .mrPrice {
+    font-size: 0.7rem;
+  }
+
+  .productPrice {
+    font-size: 1rem;
+  }
+}

@@ -255,7 +255,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-3" *ngFor="let pro of uncat; let i = index">
+    <div class="col-sm-3 col-6" *ngFor="let pro of uncat; let i = index">
       <div class="card border-0">
         <a
           title="{{ pro.desc }}"
@@ -270,13 +270,13 @@
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ pro.desc }}</h6>
           <p class="text-center mb-0">
-            <span class="text-decoration-line-through text-secondary">{{
+            <span class="text-decoration-line-through text-secondary mrPrice">{{
               pro.showMrp | currency : "INR"
             }}</span>
-            <span class="font600 me-1">
+            <span class="productPrice">
               {{ pro.showPrice | currency : "INR" }}</span
             >
-            <span class="text-danger font600">{{ pro.offer }}% off</span>
+            <span class="text-danger font600"> {{ pro.offer }}% off</span>
           </p>
 
           <p class="mb-1">
@@ -350,7 +350,10 @@
     <div class="col-sm-12 text-center">
       <h5 class="mt-3 font600 text-danger">Top Products</h5>
     </div>
-    <div class="col-sm-3" *ngFor="let topPro of topProducts; let i = index">
+    <div
+      class="col-sm-3 col-6"
+      *ngFor="let topPro of topProducts; let i = index"
+    >
       <div class="card border-0">
         <a
           title="{{ topPro.desc }}"
@@ -366,13 +369,13 @@
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ topPro.desc }}</h6>
           <p class="text-center mb-0">
-            <span class="text-decoration-line-through text-secondary">{{
-              topPro.showTopMrp | currency : "INR"
-            }}</span>
-            <span class="font600 me-1">
+            <span class="text-decoration-line-through text-secondary mrPrice">
+              {{ topPro.showTopMrp | currency : "INR" }}</span
+            >
+            <span class="productPrice">
               {{ topPro.showTopPrice | currency : "INR" }}</span
             >
-            <span class="text-danger font600">{{ topPro.offer }}% off</span>
+            <span class="text-danger font600"> {{ topPro.offer }}% off</span>
           </p>
           <p class="mb-1">
             <span class="fw-bold font9">Available Sizes :</span>
@@ -446,7 +449,10 @@
     <div class="col-sm-12 text-center">
       <h5 class="mt-3 font600 text-success">Popular Products</h5>
     </div>
-    <div class="col-sm-3" *ngFor="let popPro of popularProducts; let i = index">
+    <div
+      class="col-sm-3 col-6"
+      *ngFor="let popPro of popularProducts; let i = index"
+    >
       <div class="card border-0">
         <a
           title="{{ popPro.desc }}"
@@ -462,13 +468,13 @@
         <div class="card-body border-0 text-center">
           <h6 class="card-title mb-1">{{ popPro.desc }}</h6>
           <p class="text-center mb-0">
-            <span class="text-decoration-line-through text-secondary">{{
+            <span class="text-decoration-line-through text-secondary mrPrice">{{
               popPro.showPopMrp | currency : "INR"
             }}</span>
-            <span class="font600 me-1">
+            <span class="productPrice">
               {{ popPro.showPopPrice | currency : "INR" }}</span
             >
-            <span class="text-danger font600">{{ popPro.offer }}% off</span>
+            <span class="text-danger font600"> {{ popPro.offer }}% off</span>
           </p>
           <p class="mb-1">
             <span class="fw-bold font9">Available Sizes :</span>
