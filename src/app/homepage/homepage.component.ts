@@ -54,8 +54,11 @@ export class HomepageComponent implements OnInit, AfterViewChecked {
       { productId: 110, reviews: [] },
       { productId: 111, reviews: [] }
     ];
-    localStorage.setItem('allReviewsLocal', JSON.stringify(this.localReviews));
-    if (!this.checkReview) localStorage.setItem('allReviewsLocal', JSON.stringify(this.dbReviews))
+    // localStorage.setItem('allReviewsLocal', JSON.stringify(this.localReviews));
+    this.checkReview = JSON.parse(localStorage.getItem('allReviewsLocal'))
+    if (!this.checkReview) {
+      localStorage.setItem('allReviewsLocal', JSON.stringify(this.dbReviews))
+    }
     localStorage.setItem('allProductsLocal', JSON.stringify(this.dbproducts))
     this.cartProducts = [];
     this.localdata = [];
