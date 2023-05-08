@@ -58,11 +58,10 @@ export class ProductDetailsComponent implements OnInit {
     // this.prod.forEach(pro => this.reviews = pro.reviews ? pro.reviews : [])
     this.prod.forEach(pro => pro.curSize = this.proSize)
     this.myVar = JSON.parse(localStorage.getItem('allReviewsLocal'))
+    console.log(this.myVar)
     this.prod.forEach(prodt => {
       this.myVar.forEach(prod => {
         if (prod.productId === prodt.productId) {
-          // prod.reviews.push({ review: r.value, name: n.value, date: this.myDate })
-          // if (prod.reviews.length > 4) prod.reviews.shift();
           this.reviews = prod.reviews;
         }
       })
