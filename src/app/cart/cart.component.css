@@ -5,3 +5,29 @@
 .h-inherit {
   min-height: inherit;
 }
+
+.prRow {
+  padding: 18px 0px;
+  border-bottom: 1px solid #ddd;
+}
+
+.prRow:last-child {
+  border-bottom: 0px !important;
+}
+
+.rmPro {
+  color: #000;
+}
+
+.rmPro:hover {
+  color: #fe1814;
+}
+
+.rtRow {
+  padding: 10px 0px;
+  border-bottom: 1px solid #ddd;
+}
+
+.rtRow:last-child {
+  border-bottom: none;
+}

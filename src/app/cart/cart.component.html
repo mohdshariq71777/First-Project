@@ -1,8 +1,148 @@
 <app-header></app-header>
 <div class="container-fluid minhyt290px p-4">
+  <div class="row">
+    <div class="col-sm-12 mb-2">
+      <h5 class="mb-1">Shopping Cart</h5>
+      <label class="font8"
+        >Your Total is
+        <span class="font600 text-theme">{{
+          totalPrice | currency : "INR"
+        }}</span>
+        for {{ cartProducts.length }} items</label
+      >
+    </div>
+  </div>
+  <div class="row gy-sm-0 gy-3">
+    <div class="col-sm-8">
+      <div class="card shadow-none rounded-1">
+        <div class="card-header bg-white rounded-1 d-sm-block d-none">
+          <div class="row">
+            <div class="col-sm-7 text-center">
+              <h6 class="mb-0">Item Details</h6>
+            </div>
+            <div class="col-sm-5">
+              <div class="row">
+                <div class="col-sm-6 text-center">
+                  <h6 class="mb-0">Quantity</h6>
+                </div>
+                <div class="col-sm-6 text-center">
+                  <h6 class="mb-0">Amount</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body py-0 rounded-1">
+          <div
+            class="row prRow gy-sm-2 gy-3"
+            *ngFor="let pro of cartProducts; let i = index"
+          >
+            <div class="col-sm-7">
+              <div class="row">
+                <div class="col-sm-3 col-5">
+                  <img
+                    class="img-fluid"
+                    src="../../assets/images/details_slider/{{ pro.imgs[0] }}"
+                    alt=""
+                  />
+                </div>
+                <div class="col-sm-9 col-7">
+                  <h6 class="font8 mb-1">
+                    {{ pro.desc }}
+                  </h6>
+                  <label class="font8">
+                    <a
+                      href="javascript:void(0)"
+                      class="rmPro text-decoration-none"
+                      data-bs-toggle="modal"
+                      data-bs-target="#removeModal"
+                      (click)="sendIndex(i)"
+                      ><i class="me-2 fa fa-trash"></i>Remove</a
+                    ></label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="row">
+                <div class="col-sm-6 col-5 d-flex justify-content-center">
+                  <input
+                    id="q{{ i }}"
+                    (change)="changeQuant($event, pro)"
+                    min="1"
+                    type="number"
+                    [(ngModel)]="pro.quantity"
+                    class="form-control w-50 rounded-0 smfont8"
+                  />
+                </div>
+                <div class="col-sm-6 col-7 text-sm-center">
+                  <h6 class="mb-0">{{ pro.cartPrice | currency : "INR" }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card shadow-none rounded-1">
+        <div class="card-header p-3 rounded-1 rounded-bottom-0 bg-white">
+          <h6 class="mb-1">Payment Summary</h6>
+          <p class="font8 mb-0">
+            Your shopping cart contains {{ cartProducts.length }} products
+          </p>
+        </div>
+        <div class="card-body px-3 py-0 rounded-1">
+          <div class="row rtRow">
+            <div class="col-6">
+              <label class="font8">Item(s) Subtotal</label>
+            </div>
+            <div class="col-6 text-end">
+              <label class="font8">{{ totalPrice | currency : "INR" }}</label>
+            </div>
+          </div>
+          <div class="row rtRow">
+            <div class="col-6">
+              <label class="font8">Shipping Charge</label>
+            </div>
+            <div class="col-6 text-end">
+              <label class="font8">{{ 0 | currency : "INR" }}</label>
+            </div>
+          </div>
+          <div class="row rtRow">
+            <div class="col-6">
+              <label class="font8">Amount Payable</label>
+            </div>
+            <div class="col-6 text-end">
+              <label class="font8">{{ totalPrice | currency : "INR" }}</label>
+            </div>
+          </div>
+          <div class="row py-3 border-bottom">
+            <div class="col-12 text-center">
+              <button class="btn btn-theme1">Proceed to Checkout</button>
+            </div>
+          </div>
+          <div class="row justify-content-center py-3">
+            <div class="col-10 text-center">
+              <label class="font8"
+                >Have questions about your shopping cart? Call our customer
+                satisfaction team at
+                <span class="text-theme font600">+8287470019</span> or email
+                <span class="text-theme font600"
+                  >promosupport@footroolz.com</span
+                ></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container-fluid minhyt290px p-4">
   <div class="row" *ngIf="cartProducts.length > 0">
     <div class="col-12">
-      <div class="row row-child">
+      <div class="row">
         <div class="col-6"><h6 class="mb-0 font600">Product</h6></div>
         <div class="col-2"><h6 class="mb-0 font600">Price</h6></div>
         <div class="col-2"><h6 class="mb-0 font600">Quantity</h6></div>
@@ -10,10 +150,10 @@
       </div>
       <hr />
       <div
-        class="row row-child1 gy-3"
+        class="row gy-3"
         *ngFor="let cartPro of cartProducts; let ind = index"
       >
-        <div class="col-6">
+        <div class="col-sm-6">
           <div class="row">
             <div class="col-2">
               <img
@@ -97,7 +237,7 @@
       <p class="text-primary">Your cart is empty right now</p>
     </div>
   </div>
-</div>
+</div> -->
 
 <app-footer></app-footer>
 

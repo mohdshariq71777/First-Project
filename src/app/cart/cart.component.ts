@@ -43,12 +43,12 @@ export class CartComponent implements OnInit {
     this.localdata.splice(this.index, 1)
     this.setLocalStorage(this.localdata)
   }
-  clearCart() {
-    this.totalPrice = 0;
-    this.cartProducts.forEach(cartPro => cartPro.quantity = 1)
-    this.cartProducts = [];
-    localStorage.removeItem('cart');
-  }
+  // clearCart() {
+  //   this.totalPrice = 0;
+  //   this.cartProducts.forEach(cartPro => cartPro.quantity = 1)
+  //   this.cartProducts = [];
+  //   localStorage.removeItem('cart');
+  // }
   changeQuant(e, pro) {
     pro.cartPrice = (pro.price * pro.quantity).toFixed(2);
     const allPrices = [];

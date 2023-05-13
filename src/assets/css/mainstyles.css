@@ -86,12 +86,6 @@
   font-size: 0.5rem;
 }
 
-@media screen and (max-width:767px) {
-  .sizes .nav-link {
-    padding: 5px 0px !important;
-    width: 28px;
-  }
-}
 
 .modal-content {
   border-radius: 0px !important;
@@ -113,4 +107,16 @@ body {
 
 .bgtheme {
   background: linear-gradient(to right bottom, #FBFBBB 28%, #fff88f 76%);
+}
+
+/* For mobile only */
+@media screen and (max-width:767px) {
+  .sizes .nav-link {
+    padding: 5px 0px !important;
+    width: 28px;
+  }
+
+  .smfont8 {
+    font-size: 0.8rem !important;
+  }
 }
